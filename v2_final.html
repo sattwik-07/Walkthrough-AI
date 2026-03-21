@@ -1,0 +1,2305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Walk Through History — India's Heritage</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Cormorant+Garamond:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d1117;
+    --bg2: #13181f;
+    --bg3: #1a2130;
+    --gold: #d4a843;
+    --gold2: #f0c96a;
+    --gold-dim: rgba(212,168,67,0.15);
+    --text: #e8e0d4;
+    --text2: #9a9080;
+    --text3: #6a6055;
+    --border: rgba(212,168,67,0.18);
+    --border2: rgba(255,255,255,0.07);
+    --card: #161c26;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ─── SCROLLBAR ─── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; gap: 2rem;
+    padding: 0 3rem;
+    height: 68px;
+    background: rgba(13,17,23,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border2);
+  }
+
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none; margin-right: auto;
+  }
+
+  .nav-logo-icon {
+    width: 38px; height: 38px;
+    background: var(--gold);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+  }
+
+  .nav-logo-text { line-height: 1.1; }
+  .nav-logo-text strong { display: block; font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 600; color: var(--text); }
+  .nav-logo-text span { font-size: 11px; color: var(--gold); letter-spacing: 0.06em; }
+
+  .nav-links { display: flex; gap: 0.25rem; }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--text2);
+    font-size: 14px;
+    padding: 6px 14px;
+    border-radius: 6px;
+    transition: color 0.2s, background 0.2s;
+  }
+
+  .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+  .nav-links a.active { background: var(--gold-dim); }
+
+  .nav-actions { display: flex; align-items: center; gap: 10px; margin-left: auto; }
+
+  .btn-outline {
+    padding: 7px 18px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: transparent;
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+  .btn-gold {
+    padding: 8px 20px;
+    background: var(--gold);
+    border: none;
+    border-radius: 6px;
+    color: #0d1117;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-gold:hover { background: var(--gold2); transform: translateY(-1px); }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    padding: 6rem 2rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(212,168,67,0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 40% at 80% 80%, rgba(212,168,67,0.04) 0%, transparent 60%);
+  }
+
+  /* Decorative arch lines */
+  .hero-arch {
+    position: absolute;
+    bottom: -80px; left: 50%; transform: translateX(-50%);
+    width: 700px; height: 400px;
+    border: 1px solid rgba(212,168,67,0.08);
+    border-radius: 50% 50% 0 0;
+    pointer-events: none;
+  }
+  .hero-arch:nth-child(2) { width: 900px; height: 500px; border-color: rgba(212,168,67,0.05); }
+  .hero-arch:nth-child(3) { width: 1100px; height: 620px; border-color: rgba(212,168,67,0.03); }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.25rem;
+    position: relative;
+    display: flex; align-items: center; gap: 12px; justify-content: center;
+  }
+
+  .hero-eyebrow::before, .hero-eyebrow::after {
+    content: '';
+    display: inline-block;
+    width: 32px; height: 1px;
+    background: var(--gold);
+    opacity: 0.5;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    font-weight: 700;
+    line-height: 1.05;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    font-weight: 300;
+    color: var(--text2);
+    max-width: 540px;
+    margin-bottom: 2.5rem;
+    line-height: 1.7;
+  }
+
+  .hero-ctas {
+    display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+    margin-bottom: 4rem;
+    position: relative;
+  }
+
+  .btn-hero-primary {
+    padding: 13px 32px;
+    background: var(--gold);
+    border: none; border-radius: 6px;
+    color: #0d1117;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px; font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    letter-spacing: 0.02em;
+  }
+  .btn-hero-primary:hover { background: var(--gold2); transform: translateY(-2px); }
+
+  .btn-hero-sec {
+    padding: 13px 32px;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s, transform 0.15s;
+  }
+  .btn-hero-sec:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+  /* Floating particles */
+  .particles {
+    position: absolute; inset: 0; pointer-events: none; overflow: hidden;
+  }
+
+  .particle {
+    position: absolute;
+    width: 3px; height: 3px;
+    background: var(--gold);
+    border-radius: 50%;
+    opacity: 0;
+    animation: float-up linear infinite;
+  }
+
+  @keyframes float-up {
+    0% { opacity: 0; transform: translateY(0) scale(0); }
+    10% { opacity: 0.6; transform: scale(1); }
+    90% { opacity: 0.3; }
+    100% { opacity: 0; transform: translateY(-120vh) scale(0.5); }
+  }
+
+  /* Stats strip */
+  .hero-stats {
+    display: flex; gap: 3rem; justify-content: center;
+    position: relative;
+  }
+
+  .hero-stat { text-align: center; }
+  .hero-stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; font-weight: 600;
+    color: var(--gold);
+    display: block;
+  }
+  .hero-stat-label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text3); }
+
+  /* ─── SEARCH SECTION ─── */
+  .search-section {
+    padding: 0 2rem 5rem;
+    display: flex; flex-direction: column; align-items: center;
+    position: relative; z-index: 2;
+  }
+
+  .search-bar {
+    width: 100%; max-width: 760px;
+    display: flex; align-items: center; gap: 12px;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 4px 4px 4px 18px;
+    transition: border-color 0.2s;
+    margin-bottom: 1rem;
+  }
+  .search-bar:focus-within { border-color: var(--gold); }
+
+  .search-bar input {
+    flex: 1; background: transparent; border: none; outline: none;
+    color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 15px;
+    padding: 10px 0;
+  }
+  .search-bar input::placeholder { color: var(--text3); }
+
+  .search-bar button {
+    padding: 10px 24px;
+    background: var(--gold); border: none; border-radius: 5px;
+    color: #0d1117; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500;
+    cursor: pointer;
+  }
+
+  .filter-pills {
+    display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;
+  }
+
+  .filter-pill {
+    padding: 5px 14px;
+    border: 1px solid var(--border2);
+    border-radius: 20px;
+    background: transparent;
+    color: var(--text2);
+    font-size: 12px; font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .filter-pill:hover, .filter-pill.active {
+    border-color: var(--gold);
+    color: var(--gold);
+    background: var(--gold-dim);
+  }
+
+  /* ─── SECTION SHARED ─── */
+  section { padding: 5rem 3rem; }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+  }
+
+  .section-eyebrow {
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.75rem;
+  }
+
+  .section-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem; font-weight: 300;
+    color: var(--text2);
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  /* ─── MONUMENTS GRID ─── */
+  .monuments-section { background: var(--bg); padding-top: 2rem; }
+
+  .monuments-toolbar {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 2rem; flex-wrap: wrap;
+  }
+
+  .monuments-count {
+    font-size: 13px; color: var(--text2);
+    margin-right: auto;
+  }
+  .monuments-count strong { color: var(--text); }
+
+  .sort-select {
+    background: var(--bg2); border: 1px solid var(--border2);
+    color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 13px;
+    padding: 7px 14px; border-radius: 6px; cursor: pointer;
+    outline: none;
+  }
+
+  .view-toggle {
+    display: flex; border: 1px solid var(--border2); border-radius: 6px; overflow: hidden;
+  }
+
+  .view-btn {
+    padding: 7px 12px; background: transparent;
+    border: none; color: var(--text3); cursor: pointer;
+    font-size: 14px; transition: all 0.2s;
+  }
+  .view-btn.active { background: var(--gold-dim); color: var(--gold); }
+
+  .monuments-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .monument-card {
+    background: var(--card);
+    border: 1px solid var(--border2);
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+    animation: card-in 0.5s ease both;
+  }
+
+  @keyframes card-in {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .monument-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(212,168,67,0.35);
+    box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+  }
+
+  .card-img {
+    position: relative;
+    height: 220px;
+    overflow: hidden;
+  }
+
+  .card-img img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.4s;
+  }
+  .monument-card:hover .card-img img { transform: scale(1.05); }
+
+  .card-badge {
+    position: absolute; top: 12px; left: 12px;
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-size: 10px; font-weight: 500; letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .badge-unesco { background: #1a6fc4; color: #fff; }
+  .badge-heritage { background: rgba(212,168,67,0.9); color: #0d1117; }
+
+  .card-save {
+    position: absolute; top: 12px; right: 12px;
+    width: 32px; height: 32px;
+    background: rgba(13,17,23,0.7);
+    border: 1px solid var(--border2);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; font-size: 14px;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .card-save:hover { background: var(--gold-dim); border-color: var(--gold); }
+
+  .card-overlay {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 60px;
+    background: linear-gradient(to top, rgba(13,17,23,0.9), transparent);
+  }
+
+  .card-location {
+    position: absolute; bottom: 10px; left: 12px;
+    font-size: 11px; color: rgba(255,255,255,0.7);
+    display: flex; align-items: center; gap: 4px;
+  }
+
+  .card-body { padding: 16px; }
+
+  .card-tags {
+    display: flex; gap: 6px; flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+
+  .card-tag {
+    padding: 2px 9px;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    font-size: 10px;
+    color: var(--gold);
+    letter-spacing: 0.04em;
+  }
+
+  .card-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem; font-weight: 600;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  .card-desc {
+    font-size: 12px; color: var(--text2); line-height: 1.6;
+    margin-bottom: 14px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .card-footer {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-top: 12px;
+    border-top: 1px solid var(--border2);
+  }
+
+  .card-rating {
+    display: flex; align-items: center; gap: 4px;
+    font-size: 12px; color: var(--text2);
+  }
+  .card-rating .star { color: var(--gold); }
+
+  .card-cta {
+    font-size: 12px; color: var(--gold); font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+
+  /* ─── FEATURES STRIP ─── */
+  .features-section {
+    background: var(--bg2);
+    border-top: 1px solid var(--border2);
+    border-bottom: 1px solid var(--border2);
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+  }
+
+  .feature-card {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    transition: border-color 0.3s, background 0.3s;
+    cursor: pointer;
+  }
+  .feature-card:hover {
+    border-color: var(--border);
+    background: var(--bg3);
+  }
+
+  .feature-icon {
+    width: 52px; height: 52px;
+    background: var(--gold-dim);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    margin: 0 auto 1rem;
+  }
+
+  .feature-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem; font-weight: 600;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  .feature-desc { font-size: 12px; color: var(--text2); line-height: 1.6; }
+
+  /* ─── TIMELINE ─── */
+  .timeline-section { background: var(--bg); }
+
+  .timeline {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%; transform: translateX(-50%);
+    top: 0; bottom: 0; width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--gold), var(--gold), transparent);
+    opacity: 0.3;
+  }
+
+  .timeline-item {
+    display: flex; gap: 2rem;
+    margin-bottom: 3rem;
+    position: relative;
+  }
+
+  .timeline-item:nth-child(even) { flex-direction: row-reverse; }
+
+  .timeline-content {
+    flex: 1;
+    background: var(--card);
+    border: 1px solid var(--border2);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    transition: border-color 0.2s;
+  }
+  .timeline-content:hover { border-color: var(--border); }
+
+  .timeline-dot {
+    width: 14px; height: 14px;
+    background: var(--gold);
+    border-radius: 50%;
+    border: 3px solid var(--bg);
+    position: absolute;
+    left: 50%; transform: translateX(-50%);
+    top: 1.25rem;
+    z-index: 1;
+  }
+
+  .timeline-era {
+    font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 4px;
+  }
+
+  .timeline-year {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; font-weight: 600;
+    color: var(--text); margin-bottom: 4px;
+  }
+
+  .timeline-event { font-size: 13px; color: var(--text2); }
+
+  .timeline-space { flex: 1; }
+
+  /* ─── AI SECTION ─── */
+  .ai-section {
+    background: var(--bg2);
+    border-top: 1px solid var(--border2);
+  }
+
+  .ai-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .ai-chat {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  .chat-header {
+    padding: 14px 18px;
+    background: var(--bg3);
+    border-bottom: 1px solid var(--border2);
+    display: flex; align-items: center; gap: 10px;
+  }
+
+  .chat-avatar {
+    width: 32px; height: 32px;
+    background: var(--gold);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+  }
+
+  .chat-info strong { font-size: 13px; color: var(--text); display: block; }
+  .chat-info span { font-size: 11px; color: #4caf7d; }
+
+  .chat-messages { padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+
+  .msg {
+    max-width: 85%;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 13px; line-height: 1.5;
+  }
+
+  .msg-ai {
+    background: var(--bg3);
+    border: 1px solid var(--border2);
+    color: var(--text2);
+    align-self: flex-start;
+  }
+
+  .msg-user {
+    background: var(--gold-dim);
+    border: 1px solid var(--border);
+    color: var(--text);
+    align-self: flex-end;
+  }
+
+  .chat-input-row {
+    display: flex; gap: 8px;
+    padding: 12px 16px;
+    border-top: 1px solid var(--border2);
+  }
+
+  .chat-input {
+    flex: 1; background: var(--bg3);
+    border: 1px solid var(--border2); border-radius: 6px;
+    color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 13px;
+    padding: 8px 12px; outline: none;
+    transition: border-color 0.2s;
+  }
+  .chat-input:focus { border-color: var(--gold); }
+
+  .chat-send {
+    padding: 8px 16px; background: var(--gold);
+    border: none; border-radius: 6px; color: #0d1117;
+    font-size: 13px; font-weight: 500; cursor: pointer;
+  }
+
+  .ai-copy h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.25rem; font-weight: 600;
+    color: var(--text); margin-bottom: 1rem;
+  }
+
+  .ai-copy p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem; font-weight: 300;
+    color: var(--text2); line-height: 1.8;
+    margin-bottom: 1.5rem;
+  }
+
+  .ai-features { display: flex; flex-direction: column; gap: 10px; }
+
+  .ai-feat {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 13px; color: var(--text2);
+  }
+
+  .ai-feat-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--gold); flex-shrink: 0;
+  }
+
+  /* ─── STATES ─── */
+  .states-section { background: var(--bg); }
+
+  .states-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 12px;
+  }
+
+  .state-card {
+    background: var(--card);
+    border: 1px solid var(--border2);
+    border-radius: 10px;
+    padding: 1.25rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .state-card:hover {
+    border-color: var(--border);
+    background: var(--bg3);
+    transform: translateY(-2px);
+  }
+
+  .state-icon { font-size: 2rem; margin-bottom: 8px; }
+
+  .state-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.9rem; color: var(--text); font-weight: 600;
+    margin-bottom: 2px;
+  }
+
+  .state-count { font-size: 11px; color: var(--text3); }
+
+  /* ─── PRICING ─── */
+  .pricing-section { background: var(--bg2); border-top: 1px solid var(--border2); }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .pricing-card {
+    background: var(--card);
+    border: 1px solid var(--border2);
+    border-radius: 14px;
+    padding: 2rem;
+    position: relative;
+    transition: transform 0.25s;
+  }
+  .pricing-card:hover { transform: translateY(-4px); }
+
+  .pricing-card.featured {
+    border-color: var(--gold);
+    background: var(--bg3);
+  }
+
+  .pricing-popular {
+    position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+    background: var(--gold); color: #0d1117;
+    padding: 3px 14px; border-radius: 20px;
+    font-size: 10px; font-weight: 500; letter-spacing: 0.08em;
+    text-transform: uppercase; white-space: nowrap;
+  }
+
+  .pricing-tier {
+    font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 8px;
+  }
+
+  .pricing-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem; font-weight: 700;
+    color: var(--text); line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .pricing-price span { font-size: 1rem; color: var(--text3); font-family: 'DM Sans', sans-serif; }
+
+  .pricing-tagline {
+    font-size: 12px; color: var(--text2);
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border2);
+  }
+
+  .pricing-features { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 1.75rem; }
+
+  .pricing-features li {
+    font-size: 13px; color: var(--text2);
+    display: flex; align-items: center; gap: 8px;
+  }
+
+  .pricing-features li::before {
+    content: '✦';
+    font-size: 8px; color: var(--gold); flex-shrink: 0;
+  }
+
+  .pricing-features li.dim { color: var(--text3); }
+  .pricing-features li.dim::before { color: var(--text3); }
+
+  .btn-pricing {
+    width: 100%;
+    padding: 11px;
+    border-radius: 7px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px; font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-pricing-outline {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text);
+  }
+  .btn-pricing-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+  .btn-pricing-gold {
+    background: var(--gold); border: none;
+    color: #0d1117;
+  }
+  .btn-pricing-gold:hover { background: var(--gold2); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--bg);
+    border-top: 1px solid var(--border2);
+    padding: 4rem 3rem 2rem;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+  }
+
+  .footer-brand p {
+    font-size: 13px; color: var(--text3); line-height: 1.8;
+    margin: 12px 0;
+  }
+
+  .footer-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.9rem; font-weight: 600;
+    color: var(--text); margin-bottom: 1rem;
+  }
+
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+
+  .footer-links a {
+    text-decoration: none; font-size: 13px; color: var(--text3);
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--gold); }
+
+  .footer-bottom {
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border2);
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 12px; color: var(--text3);
+  }
+
+  /* ─── ANIMATIONS ─── */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    animation: fade-up-in 0.7s ease forwards;
+  }
+
+  @keyframes fade-up-in {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .delay-1 { animation-delay: 0.1s; }
+  .delay-2 { animation-delay: 0.2s; }
+  .delay-3 { animation-delay: 0.3s; }
+  .delay-4 { animation-delay: 0.4s; }
+  .delay-5 { animation-delay: 0.5s; }
+
+  /* typewriter */
+  .typewriter {
+    overflow: hidden;
+    border-right: 2px solid var(--gold);
+    white-space: nowrap;
+    animation: typing 2.5s steps(20) 0.5s both, blink 0.75s step-end infinite 3s;
+  }
+  @keyframes typing { from { width: 0; } to { width: 100%; } }
+  @keyframes blink { 50% { border-color: transparent; } }
+
+  /* ─── TRAVEL PLANNER SECTION ─── */
+  .planner-section {
+    background: var(--bg2);
+    border-top: 1px solid var(--border2);
+    border-bottom: 1px solid var(--border2);
+    padding: 5rem 3rem !important;
+  }
+
+  .planner-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    gap: 2rem;
+    align-items: start;
+  }
+
+  /* Form panel */
+  .planner-form-panel {
+    background: var(--bg3);
+    border: 1px solid var(--border2);
+    border-radius: 16px;
+    padding: 1.75rem;
+  }
+
+  .planner-form-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem; font-weight: 600;
+    color: var(--text); margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 8px;
+  }
+
+  .planner-form-title span {
+    font-size: 10px; padding: 2px 8px; border-radius: 10px;
+    background: var(--gold); color: #0d1117; font-weight: 600;
+    font-family: 'DM Sans', sans-serif; letter-spacing: 0.04em;
+  }
+
+  .pf-group { margin-bottom: 1.25rem; }
+
+  .pf-label {
+    display: block; font-size: 10px; font-weight: 500;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--text3); margin-bottom: 8px;
+  }
+
+  .pf-select {
+    width: 100%; background: var(--bg);
+    border: 1px solid var(--border2); border-radius: 8px;
+    color: var(--text); font-family: 'DM Sans', sans-serif;
+    font-size: 14px; padding: 11px 14px; outline: none; cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%236a6055' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 14px center;
+    transition: border-color 0.2s;
+  }
+  .pf-select:focus { border-color: var(--gold); }
+  .pf-select option { background: var(--bg3); }
+
+  .pf-chips { display: flex; gap: 7px; flex-wrap: wrap; }
+
+  .pf-chip {
+    min-width: 48px; height: 44px; padding: 0 14px;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--bg); border: 1px solid var(--border2);
+    border-radius: 8px; font-size: 13px; font-weight: 500; color: var(--text2);
+    cursor: pointer; transition: all 0.18s; font-family: 'DM Sans', sans-serif;
+  }
+  .pf-chip:hover { border-color: var(--border); color: var(--text); }
+  .pf-chip.active { background: var(--gold); border-color: var(--gold); color: #0d1117; font-weight: 600; }
+
+  .pf-budget-row { display: flex; gap: 8px; }
+
+  .pf-budget-card {
+    flex: 1; padding: 12px 8px; text-align: center;
+    background: var(--bg); border: 1px solid var(--border2);
+    border-radius: 10px; cursor: pointer; transition: all 0.2s;
+  }
+  .pf-budget-card:hover { border-color: var(--border); }
+  .pf-budget-card.active { border-color: var(--gold); background: var(--gold-dim); }
+  .pf-budget-icon { font-size: 18px; margin-bottom: 3px; }
+  .pf-budget-name { font-size: 12px; font-weight: 500; color: var(--text); margin-bottom: 1px; }
+  .pf-budget-range { font-size: 10px; color: var(--text3); }
+
+  .pf-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+
+  .pf-tag {
+    padding: 5px 12px; border-radius: 20px;
+    background: var(--bg); border: 1px solid var(--border2);
+    font-size: 12px; color: var(--text2);
+    cursor: pointer; transition: all 0.18s; font-family: 'DM Sans', sans-serif;
+  }
+  .pf-tag:hover { border-color: var(--border); color: var(--text); }
+  .pf-tag.active { border-color: var(--gold); color: var(--gold); background: var(--gold-dim); }
+
+  .pf-style-row { display: flex; gap: 7px; }
+
+  .pf-style {
+    flex: 1; padding: 10px 6px; text-align: center;
+    background: var(--bg); border: 1px solid var(--border2);
+    border-radius: 9px; cursor: pointer; transition: all 0.2s;
+  }
+  .pf-style:hover { border-color: var(--border); }
+  .pf-style.active { border-color: var(--gold); background: var(--gold-dim); }
+  .pf-style-icon { font-size: 18px; margin-bottom: 3px; }
+  .pf-style-name { font-size: 11px; color: var(--text2); }
+  .pf-style.active .pf-style-name { color: var(--gold); }
+
+  .pf-generate {
+    width: 100%; padding: 13px;
+    background: var(--gold); border: none; border-radius: 9px;
+    color: #0d1117; font-family: 'DM Sans', sans-serif;
+    font-size: 14px; font-weight: 600; cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    display: flex; align-items: center; justify-content: center; gap: 7px;
+    margin-top: 1.5rem;
+  }
+  .pf-generate:hover { background: var(--gold2); transform: translateY(-1px); }
+  .pf-generate:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+  /* Result panel */
+  .planner-result { position: sticky; top: 88px; }
+
+  .planner-empty {
+    background: var(--bg3);
+    border: 1px solid var(--border2);
+    border-radius: 16px;
+    padding: 3rem 2rem;
+    text-align: center;
+  }
+
+  .planner-empty-globe { font-size: 4.5rem; display: block; margin-bottom: 1.25rem; }
+  .planner-empty-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35rem; font-weight: 600; color: var(--text); margin-bottom: 6px;
+  }
+  .planner-empty-sub { font-size: 13px; color: var(--text2); line-height: 1.7; max-width: 260px; margin: 0 auto 1.5rem; }
+
+  .planner-tips {
+    text-align: left; background: var(--bg);
+    border: 1px solid var(--border2); border-radius: 10px;
+    padding: 14px 16px; display: flex; flex-direction: column; gap: 9px;
+  }
+  .planner-tip { display: flex; align-items: flex-start; gap: 8px; font-size: 12px; color: var(--text2); }
+  .tip-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); margin-top: 6px; flex-shrink: 0; }
+
+  /* Loading */
+  .planner-loading {
+    display: none; align-items: center; justify-content: center;
+    flex-direction: column; gap: 14px;
+    background: var(--bg3); border: 1px solid var(--border2);
+    border-radius: 16px; padding: 3.5rem 2rem; text-align: center;
+  }
+  .planner-loading.visible { display: flex; }
+  .pl-spinner {
+    width: 36px; height: 36px;
+    border: 2px solid var(--border2); border-top-color: var(--gold);
+    border-radius: 50%; animation: spin 0.8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .pl-text { font-size: 13px; color: var(--text2); }
+  .pl-step { font-size: 11px; color: var(--text3); }
+
+  /* Itinerary output */
+  .planner-itin { display: none; flex-direction: column; }
+  .planner-itin.visible { display: flex; }
+
+  .pitin-header {
+    background: var(--bg3); border: 1px solid var(--border2);
+    border-radius: 16px 16px 0 0; padding: 1.5rem;
+    border-bottom: none;
+  }
+
+  .pitin-badges { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
+
+  .pitin-badge-gold {
+    padding: 3px 10px; border-radius: 20px;
+    background: var(--gold); color: #0d1117; font-size: 11px; font-weight: 600;
+  }
+  .pitin-badge-outline {
+    padding: 2px 9px; border-radius: 20px;
+    border: 1px solid var(--border); color: var(--gold); font-size: 10px;
+  }
+
+  .pitin-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35rem; font-weight: 600; color: var(--text); margin-bottom: 3px;
+  }
+  .pitin-sub { font-size: 12px; color: var(--text2); margin-bottom: 1rem; }
+
+  .pitin-stats {
+    display: flex; gap: 1.5rem;
+    padding-top: 1rem; border-top: 1px solid var(--border2);
+  }
+  .pitin-stat-num { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--gold); display: block; }
+  .pitin-stat-label { font-size: 10px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.08em; }
+
+  /* Day accordion */
+  .pitin-days { display: flex; flex-direction: column; }
+
+  .pitin-day {
+    background: var(--card);
+    border: 1px solid var(--border2); border-top: none; overflow: hidden;
+  }
+  .pitin-day:last-of-type { border-radius: 0 0 16px 16px; }
+
+  .pitin-day-hdr {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 13px 18px; cursor: pointer; transition: background 0.2s;
+  }
+  .pitin-day-hdr:hover { background: var(--bg3); }
+  .pitin-day-hdr.open { border-bottom: 1px solid var(--border2); }
+
+  .pitin-day-left { display: flex; align-items: center; gap: 10px; }
+  .pitin-day-circle {
+    width: 30px; height: 30px; border-radius: 50%;
+    background: var(--gold-dim); border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 600; color: var(--gold);
+  }
+  .pitin-day-title { font-size: 13px; font-weight: 500; color: var(--text); }
+  .pitin-day-date { font-size: 11px; color: var(--text3); margin-top: 1px; }
+  .pitin-chevron { font-size: 10px; color: var(--text3); transition: transform 0.25s; }
+  .pitin-day-hdr.open .pitin-chevron { transform: rotate(180deg); }
+
+  .pitin-day-body {
+    display: none; flex-direction: column; gap: 10px;
+    padding: 14px 18px;
+  }
+  .pitin-day-body.open { display: flex; }
+
+  .pitin-slot { display: flex; gap: 10px; }
+
+  .pitin-slot-col {
+    display: flex; flex-direction: column; align-items: center; gap: 3px; min-width: 44px;
+  }
+  .pitin-slot-time { font-size: 9px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.06em; }
+  .pitin-slot-icon {
+    width: 26px; height: 26px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; font-size: 12px;
+  }
+  .pitin-slot-line { flex: 1; width: 1px; background: var(--border2); margin: 0 auto; }
+
+  .pitin-slot-card {
+    flex: 1; background: var(--bg3);
+    border: 1px solid var(--border2); border-radius: 9px;
+    padding: 10px 13px; margin-bottom: 4px; transition: border-color 0.2s;
+  }
+  .pitin-slot-card:hover { border-color: var(--border); }
+
+  .pitin-period {
+    font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em;
+    padding: 2px 7px; border-radius: 9px; font-weight: 500;
+    display: inline-block; margin-bottom: 4px;
+  }
+  .period-morning { background: rgba(252,196,25,0.1); color: #fcc419; }
+  .period-afternoon { background: rgba(212,168,67,0.12); color: var(--gold); }
+  .period-evening { background: rgba(129,140,248,0.12); color: #818cf8; }
+
+  .pitin-slot-name { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 3px; }
+  .pitin-slot-desc { font-size: 11px; color: var(--text2); line-height: 1.5; }
+  .pitin-slot-tags { display: flex; gap: 5px; margin-top: 6px; flex-wrap: wrap; }
+  .pitin-slot-tag {
+    font-size: 9px; padding: 2px 7px; border-radius: 9px;
+    border: 1px solid var(--border2); color: var(--text3);
+  }
+
+  /* Action bar */
+  .pitin-actions {
+    display: flex; gap: 8px; padding: 12px 16px;
+    background: var(--bg3); border: 1px solid var(--border2);
+    border-top: none; border-radius: 0 0 16px 16px;
+  }
+  .pitin-action-btn {
+    flex: 1; padding: 8px;
+    background: var(--bg); border: 1px solid var(--border2);
+    border-radius: 7px; color: var(--text2);
+    font-family: 'DM Sans', sans-serif; font-size: 12px;
+    cursor: pointer; transition: all 0.2s;
+    display: flex; align-items: center; justify-content: center; gap: 5px;
+  }
+  .pitin-action-btn:hover { border-color: var(--border); color: var(--text); }
+
+  /* ─── MODALS ─── */
+  .modal-overlay {
+    display: none;
+    position: fixed; inset: 0; z-index: 999;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(6px);
+    align-items: center; justify-content: center;
+  }
+  .modal-box {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    width: 100%; max-width: 420px;
+    margin: 1rem;
+    position: relative;
+  }
+  .modal-close {
+    position: absolute; top: 14px; right: 16px;
+    background: transparent; border: none;
+    color: var(--text3); font-size: 18px; cursor: pointer;
+  }
+  .modal-close:hover { color: var(--text); }
+  .modal-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35rem; font-weight: 600; color: var(--text);
+    margin-bottom: 4px;
+  }
+  .modal-sub { font-size: 12px; color: var(--text2); margin-bottom: 1.5rem; line-height: 1.6; }
+  .modal-field { margin-bottom: 1rem; }
+  .modal-field label { display: block; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text3); margin-bottom: 6px; }
+  .modal-field input {
+    width: 100%; background: var(--bg3); border: 1px solid var(--border2);
+    border-radius: 7px; color: var(--text); font-family: 'DM Sans', sans-serif;
+    font-size: 14px; padding: 10px 13px; outline: none;
+  }
+  .modal-field input:focus { border-color: var(--gold); }
+  .modal-error { font-size: 12px; color: #e05c5c; margin-bottom: 10px; min-height: 16px; }
+  .modal-btn {
+    width: 100%; padding: 11px; background: var(--gold); border: none;
+    border-radius: 8px; color: #0d1117; font-family: 'DM Sans', sans-serif;
+    font-size: 13px; font-weight: 600; cursor: pointer; transition: background 0.2s;
+  }
+  .modal-btn:hover { background: var(--gold2); }
+  .modal-note { font-size: 11px; color: var(--text3); margin-top: 10px; text-align: center; }
+  .modal-note a { color: var(--gold); text-decoration: none; }
+
+  /* ─── TOAST ─── */
+  #wthToast {
+    position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(20px);
+    background: var(--bg3); border: 1px solid var(--border);
+    color: var(--text); font-size: 13px; font-weight: 500;
+    padding: 10px 22px; border-radius: 24px;
+    opacity: 0; transition: opacity 0.3s, transform 0.3s;
+    pointer-events: none; z-index: 9999; white-space: nowrap;
+  }
+  #wthToast.visible { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  /* ─── CHAT TYPING DOTS ─── */
+  .chat-typing { display: inline-flex; gap: 4px; padding: 4px 0; }
+  .chat-typing span {
+    width: 6px; height: 6px; border-radius: 50%; background: var(--gold);
+    animation: dot-bounce 1.2s infinite ease-in-out;
+  }
+  .chat-typing span:nth-child(2) { animation-delay: 0.2s; }
+  .chat-typing span:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes dot-bounce { 0%,80%,100%{transform:scale(0.6);opacity:0.4} 40%{transform:scale(1);opacity:1} }
+
+  /* ─── PRINT STYLE ─── */
+  @media print {
+    nav, .hero, .search-section, .monuments-section, .features-section,
+    .timeline-section, .ai-section, .states-section, .pricing-section,
+    footer, #wthToast, .modal-overlay, .planner-form-panel,
+    .planner-empty, .planner-loading, .pitin-actions { display: none !important; }
+    .planner-section { border: none; padding: 0 !important; background: white !important; }
+    .planner-result { position: static !important; }
+    .planner-itin { color: black !important; }
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    nav { padding: 0 1.5rem; }
+    .nav-links { display: none; }
+    section { padding: 4rem 1.5rem; }
+    .pricing-grid { grid-template-columns: 1fr; max-width: 360px; }
+    .ai-layout { grid-template-columns: 1fr; }
+    .planner-inner { grid-template-columns: 1fr; }
+    .planner-result { position: static; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .timeline::before { left: 12px; }
+    .timeline-item { flex-direction: row !important; padding-left: 2rem; }
+    .timeline-space { display: none; }
+    .timeline-dot { left: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-icon">🏛</div>
+    <div class="nav-logo-text">
+      <strong>Walk Through</strong>
+      <span>History</span>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a href="#explore" class="active">Explore</a>
+    <a href="#ai">AI Guide</a>
+    <a href="#map">Map</a>
+    <a href="#timeline">Timeline</a>
+    <a href="#planner">Travel Planner</a>
+    <a href="#pricing">Plans</a>
+  </div>
+  <div class="nav-actions">
+    <button class="btn-outline" id="navSignInBtn" onclick="openAuthModal()">Sign In</button>
+    <button class="btn-gold" onclick="openAuthModal()">Get Started</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-arch"></div>
+  <div class="hero-arch"></div>
+  <div class="hero-arch"></div>
+
+  <!-- Particles -->
+  <div class="particles" id="particles"></div>
+
+  <p class="hero-eyebrow fade-up">India's Heritage</p>
+
+  <h1 class="hero-title fade-up delay-1">
+    Explore <em>Ancient</em><br>Monuments
+  </h1>
+
+  <p class="hero-sub fade-up delay-2">
+    Discover India's magnificent historical landmarks — from Mughal marvels to ancient Dravidian temples — with an AI guide by your side.
+  </p>
+
+  <div class="hero-ctas fade-up delay-3">
+    <button class="btn-hero-primary" onclick="document.getElementById('explore').scrollIntoView({behavior:'smooth'})">Explore Monuments</button>
+    <button class="btn-hero-sec" onclick="document.getElementById('ai').scrollIntoView({behavior:'smooth'})">Meet AI Guide</button>
+  </div>
+
+  <div class="hero-stats fade-up delay-4">
+    <div class="hero-stat">
+      <span class="hero-stat-num">500+</span>
+      <span class="hero-stat-label">Monuments</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">28</span>
+      <span class="hero-stat-label">States</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">40+</span>
+      <span class="hero-stat-label">UNESCO Sites</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">3D</span>
+      <span class="hero-stat-label">Virtual Tours</span>
+    </div>
+  </div>
+</section>
+
+<!-- SEARCH -->
+<div class="search-section" id="explore">
+  <div class="search-bar">
+    <span style="color:var(--text3);font-size:15px;">🔍</span>
+    <input type="text" id="searchInput" placeholder="Search monuments, cities, or states..." oninput="filterMonuments()">
+    <button onclick="filterMonuments()">Search</button>
+  </div>
+  <div class="filter-pills">
+    <button class="filter-pill active" onclick="setFilter(this,'all')">All</button>
+    <button class="filter-pill" onclick="setFilter(this,'mughal')">Mughal</button>
+    <button class="filter-pill" onclick="setFilter(this,'temple')">Temples</button>
+    <button class="filter-pill" onclick="setFilter(this,'fort')">Forts</button>
+    <button class="filter-pill" onclick="setFilter(this,'buddhist')">Buddhist</button>
+    <button class="filter-pill" onclick="setFilter(this,'dravidian')">Dravidian</button>
+    <button class="filter-pill" onclick="setFilter(this,'unesco')">UNESCO</button>
+  </div>
+</div>
+
+<!-- MONUMENTS -->
+<section class="monuments-section">
+  <div class="monuments-toolbar">
+    <p class="monuments-count">Showing <strong id="countLabel">10</strong> monuments</p>
+    <select class="sort-select" onchange="sortMonuments(this.value)">
+      <option value="default">Sort: Default</option>
+      <option value="name">Name A–Z</option>
+      <option value="rating">Top Rated</option>
+      <option value="era">By Era</option>
+    </select>
+    <div class="view-toggle">
+      <button class="view-btn active" onclick="setView(this,'grid')" title="Grid">⊞</button>
+      <button class="view-btn" onclick="setView(this,'list')" title="List">☰</button>
+    </div>
+  </div>
+
+  <div class="monuments-grid" id="monumentsGrid"></div>
+</section>
+
+<!-- TRAVEL PLANNER INLINE - moved here for visibility -->
+<section class="planner-section" id="planner">
+  <div class="section-header">
+    <p class="section-eyebrow">AI-Powered</p>
+    <h2 class="section-title">Plan Your Journey</h2>
+    <p class="section-sub">Tell us where you want to go and our AI will craft a personalised day-by-day heritage itinerary.</p>
+  </div>
+
+  <div class="planner-inner">
+
+    <!-- FORM -->
+    <div class="planner-form-panel">
+      <h3 class="planner-form-title">Quick Itinerary Builder <span>AI</span></h3>
+
+      <div class="pf-group">
+        <label class="pf-label">Destination</label>
+        <select class="pf-select" id="pfDest">
+          <option value="">Select a city...</option>
+          <optgroup label="North India">
+            <option value="agra">Agra — Taj Mahal</option>
+            <option value="delhi">Delhi — Red Fort &amp; Qutub Minar</option>
+            <option value="varanasi">Varanasi — Sacred Ghats</option>
+            <option value="amritsar">Amritsar — Golden Temple</option>
+          </optgroup>
+          <optgroup label="Rajasthan">
+            <option value="jaipur">Jaipur — Amber Fort</option>
+            <option value="jodhpur">Jodhpur — Mehrangarh Fort</option>
+            <option value="udaipur">Udaipur — City Palace</option>
+            <option value="jaisalmer">Jaisalmer — Desert Fort</option>
+          </optgroup>
+          <optgroup label="South India">
+            <option value="hampi">Hampi — Vijayanagara Ruins</option>
+            <option value="thanjavur">Thanjavur — Brihadeeswarar Temple</option>
+            <option value="madurai">Madurai — Meenakshi Temple</option>
+          </optgroup>
+          <optgroup label="Central &amp; West">
+            <option value="khajuraho">Khajuraho — Temple Complex</option>
+            <option value="ajanta">Ajanta &amp; Ellora Caves</option>
+          </optgroup>
+        </select>
+      </div>
+
+      <div class="pf-group">
+        <label class="pf-label">Duration (Days)</label>
+        <div class="pf-chips" id="pfDuration">
+          <button class="pf-chip active" data-val="2" onclick="pfChip(this,'pfDuration')">2</button>
+          <button class="pf-chip" data-val="3" onclick="pfChip(this,'pfDuration')">3</button>
+          <button class="pf-chip" data-val="5" onclick="pfChip(this,'pfDuration')">5</button>
+          <button class="pf-chip" data-val="7" onclick="pfChip(this,'pfDuration')">7</button>
+          <button class="pf-chip" data-val="10" onclick="pfChip(this,'pfDuration')">10</button>
+        </div>
+      </div>
+
+      <div class="pf-group">
+        <label class="pf-label">Budget</label>
+        <div class="pf-budget-row">
+          <div class="pf-budget-card" onclick="pfBudget(this)" data-val="budget">
+            <div class="pf-budget-icon">💰</div>
+            <div class="pf-budget-name">Budget</div>
+            <div class="pf-budget-range">&lt; ₹5k/day</div>
+          </div>
+          <div class="pf-budget-card active" onclick="pfBudget(this)" data-val="mid">
+            <div class="pf-budget-icon">✨</div>
+            <div class="pf-budget-name">Mid</div>
+            <div class="pf-budget-range">₹5–15k/day</div>
+          </div>
+          <div class="pf-budget-card" onclick="pfBudget(this)" data-val="luxury">
+            <div class="pf-budget-icon">👑</div>
+            <div class="pf-budget-name">Luxury</div>
+            <div class="pf-budget-range">₹25k+/day</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pf-group">
+        <label class="pf-label">Interests</label>
+        <div class="pf-tags">
+          <button class="pf-tag active" onclick="this.classList.toggle('active')">History</button>
+          <button class="pf-tag active" onclick="this.classList.toggle('active')">Architecture</button>
+          <button class="pf-tag" onclick="this.classList.toggle('active')">Religion</button>
+          <button class="pf-tag" onclick="this.classList.toggle('active')">Food</button>
+          <button class="pf-tag" onclick="this.classList.toggle('active')">Photography</button>
+          <button class="pf-tag" onclick="this.classList.toggle('active')">Culture</button>
+          <button class="pf-tag" onclick="this.classList.toggle('active')">Nature</button>
+          <button class="pf-tag" onclick="this.classList.toggle('active')">Adventure</button>
+        </div>
+      </div>
+
+      <div class="pf-group">
+        <label class="pf-label">Travel Style</label>
+        <div class="pf-style-row">
+          <div class="pf-style active" onclick="pfStyle(this)"><div class="pf-style-icon">🚶</div><div class="pf-style-name">Relaxed</div></div>
+          <div class="pf-style" onclick="pfStyle(this)"><div class="pf-style-icon">⚡</div><div class="pf-style-name">Packed</div></div>
+          <div class="pf-style" onclick="pfStyle(this)"><div class="pf-style-icon">🎯</div><div class="pf-style-name">Focused</div></div>
+          <div class="pf-style" onclick="pfStyle(this)"><div class="pf-style-icon">🌀</div><div class="pf-style-name">Flexible</div></div>
+        </div>
+      </div>
+
+      <div class="pf-group">
+        <label class="pf-label">Travellers</label>
+        <div class="pf-chips" id="pfTravellers">
+          <button class="pf-chip" onclick="pfChip(this,'pfTravellers')">Solo</button>
+          <button class="pf-chip active" onclick="pfChip(this,'pfTravellers')">Couple</button>
+          <button class="pf-chip" onclick="pfChip(this,'pfTravellers')">Family</button>
+          <button class="pf-chip" onclick="pfChip(this,'pfTravellers')">Group</button>
+        </div>
+      </div>
+
+      <button class="pf-generate" id="pfGenBtn" onclick="pfGenerate()">
+        <span id="pfGenIcon">✦</span>
+        <span id="pfGenLabel">Generate AI Itinerary</span>
+      </button>
+    </div>
+
+    <!-- RESULT -->
+    <div class="planner-result">
+      <div class="planner-empty" id="pfEmpty">
+        <span class="planner-empty-globe">🗺</span>
+        <h3 class="planner-empty-title">Your AI Itinerary Awaits</h3>
+        <p class="planner-empty-sub">Fill in your preferences and let AI craft your perfect heritage journey.</p>
+        <div class="planner-tips">
+          <div class="planner-tip"><div class="tip-dot"></div>Choose a destination rich in monuments for a deeper itinerary</div>
+          <div class="planner-tip"><div class="tip-dot"></div>Select interests to get experiences tailored to you</div>
+          <div class="planner-tip"><div class="tip-dot"></div>Longer durations unlock hidden gems and day-trips</div>
+          <div class="planner-tip"><div class="tip-dot"></div>Budget affects hotel and dining suggestions throughout</div>
+        </div>
+      </div>
+      <div class="planner-loading" id="pfLoading">
+        <div class="pl-spinner"></div>
+        <p class="pl-text">Crafting your itinerary...</p>
+        <p class="pl-step" id="pfStep">Analysing destination monuments</p>
+      </div>
+      <div class="planner-itin" id="pfItin">
+        <div class="pitin-header">
+          <div class="pitin-badges" id="pfBadges"></div>
+          <h3 class="pitin-title" id="pfItinTitle"></h3>
+          <p class="pitin-sub" id="pfItinSub"></p>
+          <div class="pitin-stats" id="pfStats"></div>
+        </div>
+        <div class="pitin-days" id="pfDays"></div>
+        <div class="pitin-actions">
+          <button class="pitin-action-btn" onclick="printItinerary()">🖨 Print / PDF</button>
+          <button class="pitin-action-btn" onclick="shareItinerary()">🔗 Share</button>
+          <button class="pitin-action-btn" onclick="saveItinerary()">🔖 Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features-section">
+  <div class="section-header">
+    <p class="section-eyebrow">Platform Features</p>
+    <h2 class="section-title">Everything You Need</h2>
+    <p class="section-sub">A complete toolkit for discovering and experiencing India's heritage.</p>
+  </div>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">🗿</div>
+      <p class="feature-name">3D Monument Viewer</p>
+      <p class="feature-desc">Immersive Three.js models with orbit controls, star fields, and gold hotspots.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🤖</div>
+      <p class="feature-name">AI Heritage Guide</p>
+      <p class="feature-desc">Chat with an AI that knows every monument's history, legends, and best visit times.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🗺</div>
+      <p class="feature-name">Interactive Map</p>
+      <p class="feature-desc">Navigate all monuments on an SVG grid map with category filters and pins.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📅</div>
+      <p class="feature-name">Travel Planner</p>
+      <p class="feature-desc">AI-generated day-by-day itineraries with morning, afternoon, and evening breakdowns.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🎪</div>
+      <p class="feature-name">Festival Mode</p>
+      <p class="feature-desc">8 cultural festivals linked to the monuments where they're celebrated.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">💎</div>
+      <p class="feature-name">Hidden Gems</p>
+      <p class="feature-desc">9 AI-curated lesser-known wonders most tourists never discover.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="timeline-section" id="timeline">
+  <div class="section-header">
+    <p class="section-eyebrow">Through the Ages</p>
+    <h2 class="section-title">India's Historical Eras</h2>
+    <p class="section-sub">Journey through 5,000 years of civilization, empire, and artistry.</p>
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-content">
+        <p class="timeline-era">Ancient India</p>
+        <p class="timeline-year">3000 BCE</p>
+        <p class="timeline-event">Indus Valley Civilization — Mohenjo-daro and Harappa establish the world's first planned cities.</p>
+      </div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-space"></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-space"></div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <p class="timeline-era">Maurya Empire</p>
+        <p class="timeline-year">322 BCE</p>
+        <p class="timeline-event">Ashoka spreads Buddhism across Asia, leaving a legacy of rock edicts and the Sanchi Stupa.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-content">
+        <p class="timeline-era">Gupta Period</p>
+        <p class="timeline-year">320 CE</p>
+        <p class="timeline-event">India's golden age of science, art, and literature. The Ajanta Caves reach their pinnacle.</p>
+      </div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-space"></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-space"></div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <p class="timeline-era">Mughal Era</p>
+        <p class="timeline-year">1526 CE</p>
+        <p class="timeline-event">Babur founds the Mughal Empire. Shah Jahan builds the Taj Mahal as an eternal monument to love.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-content">
+        <p class="timeline-era">Colonial Period</p>
+        <p class="timeline-year">1858 CE</p>
+        <p class="timeline-event">British Raj begins. The Gateway of India rises in Bombay as a symbol of imperial rule.</p>
+      </div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-space"></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-space"></div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <p class="timeline-era">Modern India</p>
+        <p class="timeline-year">1947 CE</p>
+        <p class="timeline-event">Independence. India inherits the world's richest repository of historical monuments.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AI SECTION -->
+<section class="ai-section" id="ai">
+  <div class="ai-layout">
+    <div class="ai-chat">
+      <div class="chat-header">
+        <div class="chat-avatar">🤖</div>
+        <div class="chat-info">
+          <strong>Heritage AI Guide</strong>
+          <span>● Online</span>
+        </div>
+      </div>
+      <div class="chat-messages" id="chatMessages">
+        <div class="msg msg-ai">Namaste! I'm your Heritage AI Guide. Ask me about any Indian monument, its history, or plan your visit. 🙏</div>
+        <div class="msg msg-user">Tell me about the Taj Mahal.</div>
+        <div class="msg msg-ai">The Taj Mahal was commissioned by Shah Jahan in 1632 CE as a mausoleum for his beloved wife Mumtaz Mahal. Built over 22 years by 20,000 artisans, it represents the zenith of Mughal architecture — combining Persian, Islamic, and Indian styles. It's a UNESCO World Heritage Site and one of the Seven Wonders of the World. Best visited at sunrise when the marble glows pink. ✨</div>
+      </div>
+      <div class="chat-input-row">
+        <input type="text" class="chat-input" id="chatInput" placeholder="Ask about any monument..." onkeydown="if(event.key==='Enter')sendChat()">
+        <button class="chat-send" onclick="sendChat()">Send</button>
+      </div>
+    </div>
+
+    <div class="ai-copy">
+      <h2>Your Personal Heritage Guide</h2>
+      <p>Powered by AI, trained on India's history. Get instant answers about architecture, legends, visiting hours, and hidden stories behind every monument.</p>
+      <div class="ai-features">
+        <div class="ai-feat"><div class="ai-feat-dot"></div>Voice input with Web Speech API</div>
+        <div class="ai-feat"><div class="ai-feat-dot"></div>Monument-specific context awareness</div>
+        <div class="ai-feat"><div class="ai-feat-dot"></div>AI-generated travel itineraries</div>
+        <div class="ai-feat"><div class="ai-feat-dot"></div>Historical stories & folklore</div>
+        <div class="ai-feat"><div class="ai-feat-dot"></div>Best time to visit recommendations</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATES -->
+<section class="states-section" id="map">
+  <div class="section-header">
+    <p class="section-eyebrow">Browse by State</p>
+    <h2 class="section-title">Explore All of India</h2>
+    <p class="section-sub">From the Himalayas to the tip of Kanyakumari.</p>
+  </div>
+  <div class="states-grid">
+    <div class="state-card"><div class="state-icon">🕌</div><p class="state-name">Uttar Pradesh</p><p class="state-count">42 monuments</p></div>
+    <div class="state-card"><div class="state-icon">🔴</div><p class="state-name">Delhi</p><p class="state-count">38 monuments</p></div>
+    <div class="state-card"><div class="state-icon">🌊</div><p class="state-name">Maharashtra</p><p class="state-count">31 monuments</p></div>
+    <div class="state-card"><div class="state-icon">🌸</div><p class="state-name">Rajasthan</p><p class="state-count">55 monuments</p></div>
+    <div class="state-card"><div class="state-icon">🏔</div><p class="state-name">Jammu & Kashmir</p><p class="state-count">18 monuments</p></div>
+    <div class="state-card"><div class="state-icon">🌴</div><p class="state-name">Tamil Nadu</p><p class="state-count">47 monuments</p></div>
+    <div class="state-card"><div class="state-icon">🪷</div><p class="state-name">Madhya Pradesh</p><p class="state-count">29 monuments</p></div>
+    <div class="state-card"><div class="state-icon">⛩</div><p class="state-name">Karnataka</p><p class="state-count">35 monuments</p></div>
+    <div class="state-card"><div class="state-icon">🎭</div><p class="state-name">Gujarat</p><p class="state-count">22 monuments</p></div>
+    <div class="state-card"><div class="state-icon">🌿</div><p class="state-name">Kerala</p><p class="state-count">16 monuments</p></div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing-section" id="pricing">
+  <div class="section-header">
+    <p class="section-eyebrow">Subscription Plans</p>
+    <h2 class="section-title">Choose Your Journey</h2>
+    <p class="section-sub">From casual explorer to dedicated historian.</p>
+  </div>
+
+  <div class="pricing-grid">
+    <div class="pricing-card">
+      <p class="pricing-tier">Explorer</p>
+      <p class="pricing-price">₹0 <span>/ month</span></p>
+      <p class="pricing-tagline">Perfect for getting started</p>
+      <ul class="pricing-features">
+        <li>Browse all monuments</li>
+        <li>Basic monument details</li>
+        <li>Map navigation</li>
+        <li class="dim">3D Viewer (3 monuments)</li>
+        <li class="dim">AI Guide (5 queries/day)</li>
+        <li class="dim">Travel Planner</li>
+      </ul>
+      <button class="btn-pricing btn-pricing-outline">Get Started Free</button>
+    </div>
+
+    <div class="pricing-card featured">
+      <div class="pricing-popular">Most Popular</div>
+      <p class="pricing-tier">Historian</p>
+      <p class="pricing-price">₹299 <span>/ month</span></p>
+      <p class="pricing-tagline">For the serious heritage enthusiast</p>
+      <ul class="pricing-features">
+        <li>Everything in Explorer</li>
+        <li>Unlimited 3D Viewer access</li>
+        <li>AI Guide unlimited queries</li>
+        <li>Full Travel Planner</li>
+        <li>Travel Diary & History</li>
+        <li class="dim">Premium hidden gems</li>
+      </ul>
+      <button class="btn-pricing btn-pricing-gold">Start Historian Plan</button>
+    </div>
+
+    <div class="pricing-card">
+      <p class="pricing-tier">Maharaja</p>
+      <p class="pricing-price">₹799 <span>/ month</span></p>
+      <p class="pricing-tagline">The ultimate heritage experience</p>
+      <ul class="pricing-features">
+        <li>Everything in Historian</li>
+        <li>Hidden Gems collection</li>
+        <li>Festival Mode & Alerts</li>
+        <li>Expert-led virtual tours</li>
+        <li>Offline access</li>
+        <li>Priority AI responses</li>
+      </ul>
+      <button class="btn-pricing btn-pricing-outline">Go Maharaja</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="nav-logo" style="display:inline-flex;margin-bottom:12px;">
+        <div class="nav-logo-icon">🏛</div>
+        <div class="nav-logo-text">
+          <strong>Walk Through</strong>
+          <span>History</span>
+        </div>
+      </div>
+      <p>Discover the stories carved in stone across India's 5,000-year heritage. Powered by AI, built with love for history.</p>
+    </div>
+
+    <div>
+      <p class="footer-heading">Explore</p>
+      <ul class="footer-links">
+        <li><a href="#">All Monuments</a></li>
+        <li><a href="#">UNESCO Sites</a></li>
+        <li><a href="#">Hidden Gems</a></li>
+        <li><a href="#">3D Viewer</a></li>
+        <li><a href="#">Virtual Tours</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <p class="footer-heading">Discover</p>
+      <ul class="footer-links">
+        <li><a href="#">Historical Timeline</a></li>
+        <li><a href="#">Festival Mode</a></li>
+        <li><a href="#">State Browse</a></li>
+        <li><a href="#">Monument Quiz</a></li>
+        <li><a href="#">Travel Planner</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <p class="footer-heading">Company</p>
+      <ul class="footer-links">
+        <li><a href="#">About</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Use</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span>© 2025 Walk Through History. All rights reserved.</span>
+    <span>Made with ❤ for India's heritage</span>
+  </div>
+</footer>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════
+   WALK THROUGH HISTORY — AI BACKEND
+   Replaces all hardcoded stubs with real Claude API calls
+   ═══════════════════════════════════════════════════════════════ */
+
+// ─── API (calls our local backend server) ─────────────────────
+const BACKEND = 'http://localhost:3000';
+
+async function callChat(messages) {
+  const res = await fetch(`${BACKEND}/api/chat`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ messages })
+  });
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    throw new Error(err.error || `${res.status}`);
+  }
+  const data = await res.json();
+  return data.reply;
+}
+
+async function callPlanner(payload) {
+  const res = await fetch(`${BACKEND}/api/planner`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  });
+  if (!res.ok) {
+    const err = await res.json().catch(() => ({}));
+    throw new Error(err.error || `Server error ${res.status}`);
+  }
+  const data = await res.json();
+  return data.itinerary;
+}
+
+// ─── AUTH MODAL ───────────────────────────────────────────────
+function getUser() { try { return JSON.parse(localStorage.getItem('wth_user') || 'null'); } catch { return null; } }
+function setUser(u) { localStorage.setItem('wth_user', JSON.stringify(u)); }
+
+function openAuthModal() {
+  const user = getUser();
+  if (user) {
+    // Already signed in — show profile/sign-out
+    const confirmed = confirm(`Signed in as ${user.name} (${user.email})\n\nSign out?`);
+    if (confirmed) { localStorage.removeItem('wth_user'); updateNavAuth(); }
+    return;
+  }
+  document.getElementById('authModal').style.display = 'flex';
+  document.getElementById('authEmail').focus();
+}
+function closeAuthModal() { document.getElementById('authModal').style.display = 'none'; }
+
+function submitAuth() {
+  const name  = document.getElementById('authName').value.trim();
+  const email = document.getElementById('authEmail').value.trim();
+  if (!name || !email || !email.includes('@')) {
+    document.getElementById('authError').textContent = 'Please enter a valid name and email.';
+    return;
+  }
+  setUser({ name, email, since: new Date().toISOString() });
+  closeAuthModal();
+  updateNavAuth();
+  showToast(`Welcome, ${name}! 🙏`);
+}
+
+function updateNavAuth() {
+  const user = getUser();
+  const btn = document.getElementById('navSignInBtn');
+  if (btn) btn.textContent = user ? `${user.name.split(' ')[0]} ▾` : 'Sign In';
+}
+
+// ─── TOAST ────────────────────────────────────────────────────
+function showToast(msg, duration = 3000) {
+  const t = document.getElementById('wthToast');
+  t.textContent = msg;
+  t.classList.add('visible');
+  setTimeout(() => t.classList.remove('visible'), duration);
+}
+
+// ─── DATA ───
+const monuments = [
+  { id:1, name:"Taj Mahal", location:"Agra, Uttar Pradesh", tags:["Mughal","UNESCO","Mausoleum"], type:["mughal","unesco"], img:"https://images.unsplash.com/photo-1587474260584-136574528ed5?w=600&q=80", rating:4.9, desc:"An ivory-white marble mausoleum on the right bank of the river Yamuna, commissioned in 1632 by Mughal emperor Shah Jahan.", badge:"unesco" },
+  { id:2, name:"Red Fort", location:"Delhi, Delhi", tags:["Mughal","UNESCO","Fort"], type:["mughal","fort","unesco"], img:"https://images.unsplash.com/photo-1548013146-72479768bada?w=600&q=80", rating:4.7, desc:"A historic fort that served as the main residence of the Mughal Emperors for nearly 200 years.", badge:"unesco" },
+  { id:3, name:"Qutub Minar", location:"Delhi, Delhi", tags:["Delhi Sultanate","UNESCO","Minaret"], type:["unesco"], img:"https://images.unsplash.com/photo-1602643245094-53a7eb66ead4?w=600&q=80", rating:4.6, desc:"The tallest minaret in India, built in 1193 by Qutb ud-Din Aibak after the defeat of Delhi's last Hindu kingdom.", badge:"unesco" },
+  { id:4, name:"Hampi Ruins", location:"Karnataka", tags:["Vijayanagara","UNESCO","Temple"], type:["temple","unesco","dravidian"], img:"https://images.unsplash.com/photo-1588416936097-41850ab3d86d?w=600&q=80", rating:4.8, desc:"Ruins of Vijayanagara, the last great Hindu kingdom. A surreal landscape of boulders and ancient temples.", badge:"unesco" },
+  { id:5, name:"Khajuraho Temples", location:"Madhya Pradesh", tags:["Chandela","UNESCO","Temple"], type:["temple","unesco"], img:"https://images.unsplash.com/photo-1609766418204-5a5bde3f3424?w=600&q=80", rating:4.7, desc:"A group of Hindu and Jain temples famous for their Nagara-style architectural symbolism.", badge:"unesco" },
+  { id:6, name:"Mehrangarh Fort", location:"Jodhpur, Rajasthan", tags:["Rajput","Fort","Marwar"], type:["fort"], img:"https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=600&q=80", rating:4.8, desc:"One of the largest forts in India, sitting 400 feet above the blue city of Jodhpur with sweeping panoramic views.", badge:"heritage" },
+  { id:7, name:"Sanchi Stupa", location:"Madhya Pradesh", tags:["Buddhist","UNESCO","Stupa"], type:["buddhist","unesco"], img:"https://images.unsplash.com/photo-1596397249129-c7a8cd2b3a2c?w=600&q=80", rating:4.5, desc:"The oldest stone structure in India, commissioned by Emperor Ashoka in the 3rd century BCE.", badge:"unesco" },
+  { id:8, name:"Hawa Mahal", location:"Jaipur, Rajasthan", tags:["Rajput","Palace","Pink City"], type:["fort"], img:"https://images.unsplash.com/photo-1477587458883-47145ed6979c?w=600&q=80", rating:4.6, desc:"The Palace of Winds — a five-story pyramidal façade with 953 small windows decorated with intricate latticework.", badge:"heritage" },
+  { id:9, name:"Ajanta Caves", location:"Maharashtra", tags:["Buddhist","UNESCO","Cave"], type:["buddhist","unesco"], img:"https://images.unsplash.com/photo-1596568401847-8c1e9e7e3d79?w=600&q=80", rating:4.7, desc:"30 rock-cut Buddhist cave monuments dating from the 2nd century BCE, renowned for their extraordinary murals.", badge:"unesco" },
+  { id:10, name:"Brihadeeswarar Temple", location:"Thanjavur, Tamil Nadu", tags:["Chola","UNESCO","Temple"], type:["temple","dravidian","unesco"], img:"https://images.unsplash.com/photo-1584138793498-4b1bca1d0c9e?w=600&q=80", rating:4.8, desc:"A masterpiece of Chola architecture, the 1000-year-old temple's vimana rises to 66 metres with a single capstone weighing 80 tonnes.", badge:"unesco" },
+];
+
+let currentFilter = 'all';
+let currentSort = 'default';
+let filtered = [...monuments];
+
+function renderMonuments() {
+  const grid = document.getElementById('monumentsGrid');
+  document.getElementById('countLabel').textContent = filtered.length;
+
+  grid.innerHTML = filtered.map((m, i) => `
+    <div class="monument-card" style="animation-delay:${i*0.06}s" onclick="openMonument(${m.id})">
+      <div class="card-img">
+        <img src="${m.img}" alt="${m.name}" loading="lazy">
+        <span class="card-badge badge-${m.badge}">${m.badge === 'unesco' ? 'UNESCO' : 'Heritage'}</span>
+        <button class="card-save" onclick="event.stopPropagation();this.textContent=this.textContent==='🔖'?'🔖':'🔖';" title="Save">🔖</button>
+        <div class="card-overlay"></div>
+        <div class="card-location">📍 ${m.location}</div>
+      </div>
+      <div class="card-body">
+        <div class="card-tags">${m.tags.map(t=>`<span class="card-tag">${t}</span>`).join('')}</div>
+        <h3 class="card-name">${m.name}</h3>
+        <p class="card-desc">${m.desc}</p>
+        <div class="card-footer">
+          <div class="card-rating"><span class="star">★</span> ${m.rating} / 5.0</div>
+          <span class="card-cta">Explore →</span>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function setFilter(el, f) {
+  currentFilter = f;
+  document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+  el.classList.add('active');
+  applyFilters();
+}
+
+function filterMonuments() {
+  applyFilters();
+}
+
+function applyFilters() {
+  const query = document.getElementById('searchInput').value.toLowerCase();
+  filtered = monuments.filter(m => {
+    const matchQuery = !query || m.name.toLowerCase().includes(query) || m.location.toLowerCase().includes(query) || m.tags.some(t => t.toLowerCase().includes(query));
+    const matchFilter = currentFilter === 'all' || m.type.includes(currentFilter);
+    return matchQuery && matchFilter;
+  });
+  sortMonuments(currentSort);
+  renderMonuments();
+}
+
+function sortMonuments(val) {
+  currentSort = val;
+  if (val === 'name') filtered.sort((a,b) => a.name.localeCompare(b.name));
+  else if (val === 'rating') filtered.sort((a,b) => b.rating - a.rating);
+  else if (val === 'era') filtered.sort((a,b) => a.id - b.id);
+  else filtered.sort((a,b) => a.id - b.id);
+  renderMonuments();
+}
+
+function setView(btn, view) {
+  document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const grid = document.getElementById('monumentsGrid');
+  if (view === 'list') {
+    grid.style.gridTemplateColumns = '1fr';
+  } else {
+    grid.style.gridTemplateColumns = 'repeat(auto-fill, minmax(320px, 1fr))';
+  }
+}
+
+function openMonument(id) {
+  const m = monuments.find(x => x.id === id);
+  alert(`🏛 ${m.name}\n\n📍 ${m.location}\n⭐ ${m.rating}/5.0\n\n${m.desc}`);
+}
+
+// ─── CHAT (Real AI) ───────────────────────────────────────────
+// Pre-load the demo messages shown in the UI into history
+// so Groq has context from the very first real message
+const chatHistory = [
+  { role: 'user',      content: 'Tell me about the Taj Mahal.' },
+  { role: 'assistant', content: 'The Taj Mahal was commissioned by Shah Jahan in 1632 CE as a mausoleum for his beloved wife Mumtaz Mahal. Built over 22 years by 20,000 artisans, it represents the zenith of Mughal architecture — combining Persian, Islamic, and Indian styles. It\'s a UNESCO World Heritage Site and one of the Seven Wonders of the World. Best visited at sunrise when the marble glows pink. ✨' }
+];
+
+async function sendChat() {
+  const input = document.getElementById('chatInput');
+  const msg = input.value.trim();
+  if (!msg) return;
+
+  const msgs = document.getElementById('chatMessages');
+
+  // Append user bubble
+  const userDiv = document.createElement('div');
+  userDiv.className = 'msg msg-user';
+  userDiv.textContent = msg;
+  msgs.appendChild(userDiv);
+  input.value = '';
+  msgs.scrollTop = msgs.scrollHeight;
+
+  // Typing indicator
+  const typing = document.createElement('div');
+  typing.className = 'msg msg-ai';
+  typing.innerHTML = '<span class="chat-typing"><span></span><span></span><span></span></span>';
+  msgs.appendChild(typing);
+  msgs.scrollTop = msgs.scrollHeight;
+
+  // Disable send while loading
+  const sendBtn = document.querySelector('.chat-send');
+  sendBtn.disabled = true;
+
+  // Add to history
+  chatHistory.push({ role: 'user', content: msg });
+
+  try {
+    // Retry once on failure (handles brief rate limit spikes)
+    let reply;
+    try {
+      reply = await callChat([...chatHistory]);
+    } catch (firstErr) {
+      // Wait 2 seconds and retry once
+      await new Promise(r => setTimeout(r, 2000));
+      reply = await callChat([...chatHistory]);
+    }
+    chatHistory.push({ role: 'assistant', content: reply });
+    typing.textContent = reply;
+  } catch (err) {
+    // Remove failed user message from history
+    chatHistory.pop();
+    // Show friendly error with actual reason
+    const msg = err.message || '';
+    if (msg.includes('429') || msg.toLowerCase().includes('rate')) {
+      typing.textContent = '⚠ Too many messages! Please wait a few seconds and try again.';
+    } else if (msg.includes('500') || msg.toLowerCase().includes('unavailable')) {
+      typing.textContent = '⚠ AI guide is temporarily unavailable. Please try again.';
+    } else {
+      typing.textContent = '⚠ Could not reach the AI guide. Make sure your server is running.';
+    }
+  } finally {
+    sendBtn.disabled = false;
+    msgs.scrollTop = msgs.scrollHeight;
+  }
+}
+
+// ─── AI TRAVEL PLANNER (Real AI) ─────────────────────────────
+let lastItinData = null;
+
+async function pfGenerate() {
+  const dest = document.getElementById('pfDest').value;
+  if (!dest) {
+    const sel = document.getElementById('pfDest');
+    sel.style.borderColor = 'rgba(212,80,80,0.5)';
+    setTimeout(() => sel.style.borderColor = '', 1800);
+    return;
+  }
+
+  const days = parseInt(document.querySelector('#pfDuration .pf-chip.active')?.dataset.val || '2');
+  pfDuration = days;
+
+  const destLabel = document.querySelector(`#pfDest option[value="${dest}"]`).textContent.split('—')[0].trim();
+  const budget = pfBudgetVal;
+  const budgetLabel = budget; // passed directly to server
+  const interests = [...document.querySelectorAll('.pf-tag.active')].map(t => t.textContent).join(', ') || 'History, Architecture';
+  const style = document.querySelector('.pf-style.active .pf-style-name')?.textContent || 'Relaxed';
+  const travellers = document.querySelector('#pfTravellers .pf-chip.active')?.textContent || 'Couple';
+
+  document.getElementById('pfEmpty').style.display = 'none';
+  document.getElementById('pfItin').classList.remove('visible');
+  document.getElementById('pfLoading').classList.add('visible');
+
+  const btn = document.getElementById('pfGenBtn');
+  btn.disabled = true;
+  document.getElementById('pfGenLabel').textContent = 'Generating...';
+
+  // Animate loading steps
+  let s = 0;
+  const si = setInterval(() => {
+    if (s < pfLoadSteps.length) document.getElementById('pfStep').textContent = pfLoadSteps[s++];
+  }, 400);
+
+  try {
+    const itinerary = await callPlanner({
+      destination: destLabel,
+      days,
+      budget,
+      interests,
+      style,
+      travellers
+    });
+    clearInterval(si);
+    document.getElementById('pfLoading').classList.remove('visible');
+    lastItinData = { dest: destLabel, days, data: itinerary };
+    pfBuildItinFromAI(itinerary, destLabel, days, budget);
+  } catch (err) {
+    clearInterval(si);
+    document.getElementById('pfLoading').classList.remove('visible');
+    document.getElementById('pfEmpty').style.display = '';
+    showToast('⚠ Could not generate itinerary. Please try again.');
+  } finally {
+    btn.disabled = false;
+    document.getElementById('pfGenLabel').textContent = 'Regenerate Itinerary';
+    document.getElementById('pfGenIcon').textContent = '↺';
+  }
+}
+
+function pfBuildItinFromAI(data, destLabel, totalDays, budget) {
+  const budgetCost = { budget:'₹4,200', mid:'₹11,500', luxury:'₹32,000' };
+  const estimatedCost = data.budgetPerDay || budgetCost[budget] || '₹11,500';
+
+  document.getElementById('pfBadges').innerHTML = `
+    <span class="pitin-badge-gold">${totalDays} Days</span>
+    <span class="pitin-badge-outline">${budget === 'mid' ? 'Mid' : budget === 'luxury' ? 'Luxury' : 'Budget'} Budget</span>
+    <span class="pitin-badge-outline">✦ AI Generated</span>
+  `;
+  document.getElementById('pfItinTitle').textContent = `${data.emoji || '🏛'} ${data.title || destLabel + ' Heritage Journey'}`;
+  document.getElementById('pfItinSub').textContent = data.tagline || `A curated ${totalDays}-day heritage experience`;
+  document.getElementById('pfStats').innerHTML = `
+    <div><span class="pitin-stat-num">${totalDays}</span><span class="pitin-stat-label">Days</span></div>
+    <div><span class="pitin-stat-num">${totalDays * 3}</span><span class="pitin-stat-label">Experiences</span></div>
+    <div><span class="pitin-stat-num">${data.monuments || 6}</span><span class="pitin-stat-label">Monuments</span></div>
+    <div><span class="pitin-stat-num">${estimatedCost}</span><span class="pitin-stat-label">Est./Day</span></div>
+  `;
+
+  const container = document.getElementById('pfDays');
+  container.innerHTML = '';
+  const start = new Date(); start.setDate(start.getDate() + 7);
+
+  const dayKeys = Object.keys(data.days);
+  for (let i = 0; i < totalDays; i++) {
+    const key = dayKeys[i % dayKeys.length];
+    const d = data.days[key];
+    const dt = new Date(start); dt.setDate(dt.getDate() + i);
+    const ds = dt.toLocaleDateString('en-IN', { weekday:'short', day:'numeric', month:'short' });
+
+    const card = document.createElement('div');
+    card.className = 'pitin-day';
+    card.innerHTML = `
+      <div class="pitin-day-hdr ${i===0?'open':''}" onclick="pfToggleDay(this)">
+        <div class="pitin-day-left">
+          <div class="pitin-day-circle">D${i+1}</div>
+          <div>
+            <div class="pitin-day-title">Day ${i+1} — ${d.title}</div>
+            <div class="pitin-day-date">${ds}</div>
+          </div>
+        </div>
+        <span class="pitin-chevron">▼</span>
+      </div>
+      <div class="pitin-day-body ${i===0?'open':''}">
+        ${pfSlot('Morning','🌅','morning','7 AM',d.m,'#fcc419')}
+        ${pfSlot('Afternoon','☀','afternoon','1 PM',d.a,'#d4a843')}
+        ${pfSlot('Evening','🌙','evening','6 PM',d.e,'#818cf8')}
+      </div>`;
+    container.appendChild(card);
+  }
+
+  document.getElementById('pfItin').classList.add('visible');
+  document.getElementById('pfItin').scrollIntoView({ behavior:'smooth', block:'start' });
+}
+
+// ─── SAVE / SHARE / PRINT ─────────────────────────────────────
+function saveItinerary() {
+  if (!lastItinData) { showToast('Generate an itinerary first.'); return; }
+  const saved = JSON.parse(localStorage.getItem('wth_saved_itins') || '[]');
+  saved.unshift({ ...lastItinData, savedAt: new Date().toISOString() });
+  localStorage.setItem('wth_saved_itins', JSON.stringify(saved.slice(0, 20)));
+  showToast('✓ Itinerary saved to your library!');
+}
+
+async function shareItinerary() {
+  if (!lastItinData) { showToast('Generate an itinerary first.'); return; }
+  const text = `🏛 ${lastItinData.data.title || lastItinData.dest + ' Heritage Journey'}\n${lastItinData.data.tagline || ''}\n\nPlanned with Walk Through History`;
+  try {
+    if (navigator.share) {
+      await navigator.share({ title: 'My Heritage Itinerary', text });
+    } else {
+      await navigator.clipboard.writeText(text);
+      showToast('✓ Itinerary text copied to clipboard!');
+    }
+  } catch { showToast('✓ Copied to clipboard!'); }
+}
+
+function printItinerary() {
+  window.print();
+}
+const pfDestData = {
+  agra: { name:"Agra", tagline:"The Eternal City of Love & Marble", emoji:"🕌", monuments:6,
+    days: { 1:{ title:"The Taj & Its World", m:{name:"Taj Mahal at Sunrise",desc:"Enter at dawn — the marble turns pink as the sun rises. Spend 2 hours in the gardens, mosque, and mausoleum.",tags:["UNESCO","Mughal","Photography"]}, a:{name:"Agra Fort",desc:"Walk through Diwan-i-Am, Diwan-i-Khas, and the octagonal tower where Shah Jahan spent his final years.",tags:["UNESCO","Fort","History"]}, e:{name:"Mehtab Bagh at Sunset",desc:"Cross the Yamuna for a perfect reflected view of the Taj at golden hour.",tags:["Gardens","Sunset","Views"]} },
+               2:{ title:"Fatehpur Sikri & Hidden Gems", m:{name:"Fatehpur Sikri",desc:"Akbar's abandoned sandstone capital — a UNESCO ghost city with the towering Buland Darwaza gateway.",tags:["UNESCO","Mughal","Architecture"]}, a:{name:"Itmad-ud-Daulah (Baby Taj)",desc:"The first all-marble Mughal structure with pietra dura inlays — forerunner to the Taj itself.",tags:["Mughal","Hidden Gem","Marble"]}, e:{name:"Sadar Bazaar & Mughal Cuisine",desc:"Explore the old market for petha and marble souvenirs. Rooftop dinner with lit Taj views.",tags:["Food","Shopping","Nightlife"]} } } },
+  delhi: { name:"Delhi", tagline:"8 Cities, 3,000 Years of History", emoji:"🔴", monuments:8,
+    days: { 1:{ title:"Old Delhi & Mughal Grandeur", m:{name:"Red Fort at Dawn",desc:"Arrive early to the emperor's palace-fortress before crowds. Explore Diwan-i-Khas and the pearl mosque.",tags:["UNESCO","Mughal","History"]}, a:{name:"Jama Masjid & Chandni Chowk",desc:"India's largest mosque, then a rickshaw through spice markets and narrow Mughal-era lanes.",tags:["Mughal","Culture","Food"]}, e:{name:"Qutub Minar at Golden Hour",desc:"The 73m minaret complex — and a 2,000-year-old iron pillar that has never rusted.",tags:["UNESCO","Architecture","Mystery"]} },
+               2:{ title:"Mughal Tombs & New Delhi", m:{name:"Humayun's Tomb",desc:"The forerunner to the Taj Mahal — perfect charbagh garden and Persian Mughal design.",tags:["UNESCO","Mughal","Garden"]}, a:{name:"India Gate & Lutyens' Delhi",desc:"The 42m war memorial and the grand ceremonial boulevard to Rashtrapati Bhavan.",tags:["Colonial","Memorial","Architecture"]}, e:{name:"Hauz Khas Village",desc:"Medieval stepwell and 14th-century madrasa ruins surrounded by cafes and galleries.",tags:["Medieval","Food","Nightlife"]} } } },
+  jaipur: { name:"Jaipur", tagline:"The Pink City of Rajput Splendour", emoji:"🌸", monuments:7,
+    days: { 1:{ title:"Amber Fort & the Hilltops", m:{name:"Amber Fort at Sunrise",desc:"Arrive before crowds — the hilltop fort glows gold at dawn. Explore the Sheesh Mahal (Hall of Mirrors).",tags:["UNESCO","Rajput","Fort"]}, a:{name:"Nahargarh & Jaigarh Forts",desc:"Twin guardian forts above Amber. Jaigarh houses the world's largest cannon on wheels.",tags:["Fort","Views","History"]}, e:{name:"Jal Mahal at Dusk",desc:"The Water Palace rising from Man Sagar Lake turns amber at sunset.",tags:["Palace","Photography","Sunset"]} },
+               2:{ title:"The Pink City Within", m:{name:"Hawa Mahal & Bazaars",desc:"953 jharokha windows for royal women to watch street life. Explore Johari Bazaar for gems.",tags:["Architecture","Shopping","Photography"]}, a:{name:"City Palace & Jantar Mantar",desc:"The living royal palace and the world's largest stone sundial — a UNESCO site accurate to 2 seconds.",tags:["UNESCO","Royalty","Science"]}, e:{name:"Chokhi Dhani Village Dinner",desc:"Folk dance, puppet shows, and an authentic Rajasthani thali dinner under the stars.",tags:["Culture","Food","Music"]} } } },
+  hampi: { name:"Hampi", tagline:"The Ruined Capital of a Lost Empire", emoji:"🏛", monuments:9,
+    days: { 1:{ title:"Temples & Sacred River", m:{name:"Virupaksha Temple at Dawn",desc:"A living temple still active after 7 centuries. Climb the gopuram for a boulder-strewn panorama.",tags:["Temple","Living Heritage","Dravidian"]}, a:{name:"Vittala Temple & Stone Chariot",desc:"Musical pillars that ring like bells and the iconic stone chariot on the ₹50 note.",tags:["UNESCO","Vijayanagara","Architecture"]}, e:{name:"Tungabhadra River at Sunset",desc:"Coracle boat ride through boulders as ruins glow orange — one of India's most surreal landscapes.",tags:["Nature","Sunset","Adventure"]} },
+               2:{ title:"Royal Enclosure & Hilltops", m:{name:"Matanga Hill Sunrise",desc:"600 steps before dawn for a 360° panorama of ruins across a volcanic boulder landscape.",tags:["Photography","Sunrise","Trekking"]}, a:{name:"Royal Enclosure & Lotus Mahal",desc:"The exquisite Lotus Mahal blends Hindu and Islamic styles. Nearby elephant stables held royal war elephants.",tags:["Royalty","Architecture","History"]}, e:{name:"Hemakuta Hill Temples",desc:"Pre-Vijayanagara Jain and Hindu temples on a hilltop with the best 360° sunset view in Hampi.",tags:["Jain","Sunset","Architecture"]} } } },
+};
+
+const pfDefaultDays = (n) => ({
+  1:{ title:"Arrival & Heritage Walk", m:{name:"Old City Heritage Walk",desc:"Start with a guided walk through the historic core. Layers of history visible on every street corner.",tags:["Heritage","Walking","Architecture"]}, a:{name:"Main Monument Visit",desc:"Explore the primary UNESCO site or fort. Hire a local guide for hidden corners and deeper context.",tags:["UNESCO","History","Culture"]}, e:{name:"Local Bazaar & Cuisine",desc:"Immerse in market culture, try regional street food, and explore artisanal crafts.",tags:["Food","Shopping","Culture"]} },
+  2:{ title:"Deep Dive & Hidden Gems", m:{name:"Sunrise at Sacred Site",desc:"Begin early — the near-empty grounds and morning light create an unforgettable experience.",tags:["Sacred","Sunrise","Photography"]}, a:{name:"Museum & Ruins",desc:"Visit the archaeological museum, then a lesser-known ruin or temple nearby.",tags:["Museum","Archaeology","Learning"]}, e:{name:"Cultural Performance",desc:"Classical dance or music — a living link to the traditions that built these monuments.",tags:["Culture","Music","Dance"]} },
+});
+
+let pfDuration = 2, pfBudgetVal = 'mid', pfStyleVal = 'relaxed';
+
+function pfChip(el, groupId) {
+  document.querySelectorAll(`#${groupId} .pf-chip`).forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  if (groupId === 'pfDuration') pfDuration = parseInt(el.dataset.val) || el.textContent.trim();
+}
+
+function pfBudget(el) {
+  document.querySelectorAll('.pf-budget-card').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  pfBudgetVal = el.dataset.val;
+}
+
+function pfStyle(el) {
+  document.querySelectorAll('.pf-style').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+}
+
+const pfLoadSteps = ["Analysing destination monuments...","Mapping heritage sites by era...","Optimising travel distances...","Crafting morning activities...","Selecting afternoon experiences...","Curating evening highlights...","Adding food & hotel picks...","Finalising your itinerary..."];
+
+
+function pfSlot(period, icon, cls, time, data, color) {
+  return `<div class="pitin-slot">
+    <div class="pitin-slot-col">
+      <div class="pitin-slot-time">${time}</div>
+      <div class="pitin-slot-icon" style="background:${color}18;color:${color}">${icon}</div>
+      <div class="pitin-slot-line"></div>
+    </div>
+    <div class="pitin-slot-card">
+      <span class="pitin-period period-${cls}">${period}</span>
+      <div class="pitin-slot-name">${data.name}</div>
+      <div class="pitin-slot-desc">${data.desc}</div>
+      <div class="pitin-slot-tags">${data.tags.map(t=>`<span class="pitin-slot-tag">${t}</span>`).join('')}</div>
+    </div>
+  </div>`;
+}
+
+function pfToggleDay(hdr) {
+  hdr.classList.toggle('open');
+  hdr.nextElementSibling.classList.toggle('open');
+}
+
+(function spawnParticles() {
+  const container = document.getElementById('particles');
+  if (!container) return;
+  for (let i = 0; i < 20; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.left = Math.random() * 100 + '%';
+    p.style.bottom = '-10px';
+    p.style.animationDuration = (8 + Math.random() * 12) + 's';
+    p.style.animationDelay = (Math.random() * 10) + 's';
+    p.style.width = p.style.height = (1 + Math.random() * 3) + 'px';
+    container.appendChild(p);
+  }
+})();
+
+// ─── INIT ───
+renderMonuments();
+updateNavAuth();
+</script>
+<!-- ═══════════════ AUTH MODAL ═══════════════ -->
+<div class="modal-overlay" id="authModal" onclick="if(event.target===this)closeAuthModal()">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeAuthModal()">✕</button>
+    <p class="modal-title">Welcome Back 🙏</p>
+    <p class="modal-sub">Sign in to save itineraries, track your heritage journey, and unlock AI features.</p>
+    <div class="modal-field">
+      <label>Your Name</label>
+      <input type="text" id="authName" placeholder="Arjun Sharma" onkeydown="if(event.key==='Enter')document.getElementById('authEmail').focus()">
+    </div>
+    <div class="modal-field">
+      <label>Email Address</label>
+      <input type="email" id="authEmail" placeholder="arjun@example.com" onkeydown="if(event.key==='Enter')submitAuth()">
+    </div>
+    <p class="modal-error" id="authError"></p>
+    <button class="modal-btn" onclick="submitAuth()">Continue →</button>
+    <p class="modal-note">No password needed. Your data stays on your device.</p>
+  </div>
+</div>
+
+<!-- ═══════════════ TOAST ═══════════════ -->
+<div id="wthToast"></div>
+
+</body>
+</html>
