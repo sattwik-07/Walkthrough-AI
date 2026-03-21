@@ -14,7 +14,7 @@
 require('dotenv').config();
 const express = require('express');
 const cors    = require('cors');
-const Groq    = require('groq-sdk');   // ← Groq instead of Anthropic
+const Groq    = require('groq-sdk');
 
 const app  = express();
 const port = process.env.PORT || 3000;
@@ -26,8 +26,8 @@ if (!process.env.GROQ_API_KEY) {
   process.exit(1);
 }
 
-const groq  = new Groq({ apiKey: process.env.GROQ_API_KEY });  // ← Groq client
-const MODEL = 'llama-3.1-8b-instant';                               // ← Free Llama 3 model
+const groq  = new Groq({ apiKey: process.env.GROQ_API_KEY });
+const MODEL = 'llama-3.1-8b-instant';
 
 // ─── MIDDLEWARE ───────────────────────────────────────────────
 app.use(cors({
@@ -39,7 +39,7 @@ app.use(express.json({ limit: '50kb' }));
 
 // Serve the frontend HTML directly from this folder
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/v2_final.html');
+  res.sendFile(__dirname + '/v3_final.html');
 });
 app.use(express.static(__dirname));
 
@@ -88,7 +88,7 @@ function validateMessages(messages) {
 // ─── POST /api/chat ───────────────────────────────────────────
 app.post('/api/chat', async (req, res) => {
   try {
-    const { messages } = req.body;
+    const { messages, langInstruction } = req.body;  // ← NOW receives language instruction
 
     if (!validateMessages(messages)) {
       return res.status(400).json({ error: 'Invalid messages array.' });
@@ -97,17 +97,21 @@ app.post('/api/chat', async (req, res) => {
     // Cap history at last 20 messages to avoid token bloat
     const trimmed = messages.slice(-20);
 
-    // ← Groq call instead of anthropic.messages.create()
+    // ← Append language instruction to system prompt if provided
+    const systemPrompt = langInstruction
+      ? `${HERITAGE_SYSTEM}\n\nLANGUAGE INSTRUCTION: ${langInstruction}`
+      : HERITAGE_SYSTEM;
+
     const response = await groq.chat.completions.create({
       model:      MODEL,
       max_tokens: 600,
       messages: [
-        { role: 'system', content: HERITAGE_SYSTEM },
+        { role: 'system', content: systemPrompt },  // ← uses dynamic systemPrompt
         ...trimmed
       ],
     });
 
-    const reply = response.choices[0].message.content;  // ← Groq response format
+    const reply = response.choices[0].message.content;
     res.json({ reply });
 
   } catch (err) {
@@ -144,7 +148,6 @@ app.post('/api/planner', async (req, res) => {
       `Travelling as: ${travellers || 'Couple'}\n` +
       `Focus on authentic heritage monuments, cultural experiences, and local food.`;
 
-    // ← Groq call instead of anthropic.messages.create()
     const response = await groq.chat.completions.create({
       model:      MODEL,
       max_tokens: 2500,
@@ -154,14 +157,20 @@ app.post('/api/planner', async (req, res) => {
       ],
     });
 
-    const raw   = response.choices[0].message.content;  // ← Groq response format
-    const clean = raw.replace(/```json|```/g, '').trim();
+    const raw = response.choices[0].message.content;
+
+    // ← Improved JSON extraction (more reliable than replace)
+    const jsonMatch = raw.match(/\{[\s\S]*\}/);
+    if (!jsonMatch) {
+      console.error('[/api/planner] No JSON found:', raw.slice(0, 200));
+      return res.status(500).json({ error: 'Failed to parse itinerary. Please try again.' });
+    }
 
     let itinerary;
     try {
-      itinerary = JSON.parse(clean);
+      itinerary = JSON.parse(jsonMatch[0]);
     } catch {
-      console.error('[/api/planner] JSON parse failed:', clean.slice(0, 200));
+      console.error('[/api/planner] JSON parse failed');
       return res.status(500).json({ error: 'Failed to parse itinerary. Please try again.' });
     }
 
