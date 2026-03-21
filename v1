@@ -1,0 +1,1459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Walk Through History — India's Heritage</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Cormorant+Garamond:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d1117;
+    --bg2: #13181f;
+    --bg3: #1a2130;
+    --gold: #d4a843;
+    --gold2: #f0c96a;
+    --gold-dim: rgba(212,168,67,0.15);
+    --text: #e8e0d4;
+    --text2: #9a9080;
+    --text3: #6a6055;
+    --border: rgba(212,168,67,0.18);
+    --border2: rgba(255,255,255,0.07);
+    --card: #161c26;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ─── SCROLLBAR ─── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; gap: 2rem;
+    padding: 0 3rem;
+    height: 68px;
+    background: rgba(13,17,23,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border2);
+  }
+
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none; margin-right: auto;
+  }
+
+  .nav-logo-icon {
+    width: 38px; height: 38px;
+    background: var(--gold);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+  }
+
+  .nav-logo-text { line-height: 1.1; }
+  .nav-logo-text strong { display: block; font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 600; color: var(--text); }
+  .nav-logo-text span { font-size: 11px; color: var(--gold); letter-spacing: 0.06em; }
+
+  .nav-links { display: flex; gap: 0.25rem; }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--text2);
+    font-size: 14px;
+    padding: 6px 14px;
+    border-radius: 6px;
+    transition: color 0.2s, background 0.2s;
+  }
+
+  .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+  .nav-links a.active { background: var(--gold-dim); }
+
+  .nav-actions { display: flex; align-items: center; gap: 10px; margin-left: auto; }
+
+  .btn-outline {
+    padding: 7px 18px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: transparent;
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+  .btn-gold {
+    padding: 8px 20px;
+    background: var(--gold);
+    border: none;
+    border-radius: 6px;
+    color: #0d1117;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-gold:hover { background: var(--gold2); transform: translateY(-1px); }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    padding: 6rem 2rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(212,168,67,0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 40% at 80% 80%, rgba(212,168,67,0.04) 0%, transparent 60%);
+  }
+
+  /* Decorative arch lines */
+  .hero-arch {
+    position: absolute;
+    bottom: -80px; left: 50%; transform: translateX(-50%);
+    width: 700px; height: 400px;
+    border: 1px solid rgba(212,168,67,0.08);
+    border-radius: 50% 50% 0 0;
+    pointer-events: none;
+  }
+  .hero-arch:nth-child(2) { width: 900px; height: 500px; border-color: rgba(212,168,67,0.05); }
+  .hero-arch:nth-child(3) { width: 1100px; height: 620px; border-color: rgba(212,168,67,0.03); }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.25rem;
+    position: relative;
+    display: flex; align-items: center; gap: 12px; justify-content: center;
+  }
+
+  .hero-eyebrow::before, .hero-eyebrow::after {
+    content: '';
+    display: inline-block;
+    width: 32px; height: 1px;
+    background: var(--gold);
+    opacity: 0.5;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    font-weight: 700;
+    line-height: 1.05;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    font-weight: 300;
+    color: var(--text2);
+    max-width: 540px;
+    margin-bottom: 2.5rem;
+    line-height: 1.7;
+  }
+
+  .hero-ctas {
+    display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+    margin-bottom: 4rem;
+    position: relative;
+  }
+
+  .btn-hero-primary {
+    padding: 13px 32px;
+    background: var(--gold);
+    border: none; border-radius: 6px;
+    color: #0d1117;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px; font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    letter-spacing: 0.02em;
+  }
+  .btn-hero-primary:hover { background: var(--gold2); transform: translateY(-2px); }
+
+  .btn-hero-sec {
+    padding: 13px 32px;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s, transform 0.15s;
+  }
+  .btn-hero-sec:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+  /* Floating particles */
+  .particles {
+    position: absolute; inset: 0; pointer-events: none; overflow: hidden;
+  }
+
+  .particle {
+    position: absolute;
+    width: 3px; height: 3px;
+    background: var(--gold);
+    border-radius: 50%;
+    opacity: 0;
+    animation: float-up linear infinite;
+  }
+
+  @keyframes float-up {
+    0% { opacity: 0; transform: translateY(0) scale(0); }
+    10% { opacity: 0.6; transform: scale(1); }
+    90% { opacity: 0.3; }
+    100% { opacity: 0; transform: translateY(-120vh) scale(0.5); }
+  }
+
+  /* Stats strip */
+  .hero-stats {
+    display: flex; gap: 3rem; justify-content: center;
+    position: relative;
+  }
+
+  .hero-stat { text-align: center; }
+  .hero-stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; font-weight: 600;
+    color: var(--gold);
+    display: block;
+  }
+  .hero-stat-label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text3); }
+
+  /* ─── SEARCH SECTION ─── */
+  .search-section {
+    padding: 0 2rem 5rem;
+    display: flex; flex-direction: column; align-items: center;
+    position: relative; z-index: 2;
+  }
+
+  .search-bar {
+    width: 100%; max-width: 760px;
+    display: flex; align-items: center; gap: 12px;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 4px 4px 4px 18px;
+    transition: border-color 0.2s;
+    margin-bottom: 1rem;
+  }
+  .search-bar:focus-within { border-color: var(--gold); }
+
+  .search-bar input {
+    flex: 1; background: transparent; border: none; outline: none;
+    color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 15px;
+    padding: 10px 0;
+  }
+  .search-bar input::placeholder { color: var(--text3); }
+
+  .search-bar button {
+    padding: 10px 24px;
+    background: var(--gold); border: none; border-radius: 5px;
+    color: #0d1117; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500;
+    cursor: pointer;
+  }
+
+  .filter-pills {
+    display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;
+  }
+
+  .filter-pill {
+    padding: 5px 14px;
+    border: 1px solid var(--border2);
+    border-radius: 20px;
+    background: transparent;
+    color: var(--text2);
+    font-size: 12px; font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .filter-pill:hover, .filter-pill.active {
+    border-color: var(--gold);
+    color: var(--gold);
+    background: var(--gold-dim);
+  }
+
+  /* ─── SECTION SHARED ─── */
+  section { padding: 5rem 3rem; }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+  }
+
+  .section-eyebrow {
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.75rem;
+  }
+
+  .section-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem; font-weight: 300;
+    color: var(--text2);
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  /* ─── MONUMENTS GRID ─── */
+  .monuments-section { background: var(--bg); padding-top: 2rem; }
+
+  .monuments-toolbar {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 2rem; flex-wrap: wrap;
+  }
+
+  .monuments-count {
+    font-size: 13px; color: var(--text2);
+    margin-right: auto;
+  }
+  .monuments-count strong { color: var(--text); }
+
+  .sort-select {
+    background: var(--bg2); border: 1px solid var(--border2);
+    color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 13px;
+    padding: 7px 14px; border-radius: 6px; cursor: pointer;
+    outline: none;
+  }
+
+  .view-toggle {
+    display: flex; border: 1px solid var(--border2); border-radius: 6px; overflow: hidden;
+  }
+
+  .view-btn {
+    padding: 7px 12px; background: transparent;
+    border: none; color: var(--text3); cursor: pointer;
+    font-size: 14px; transition: all 0.2s;
+  }
+  .view-btn.active { background: var(--gold-dim); color: var(--gold); }
+
+  .monuments-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .monument-card {
+    background: var(--card);
+    border: 1px solid var(--border2);
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+    animation: card-in 0.5s ease both;
+  }
+
+  @keyframes card-in {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .monument-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(212,168,67,0.35);
+    box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+  }
+
+  .card-img {
+    position: relative;
+    height: 220px;
+    overflow: hidden;
+  }
+
+  .card-img img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.4s;
+  }
+  .monument-card:hover .card-img img { transform: scale(1.05); }
+
+  .card-badge {
+    position: absolute; top: 12px; left: 12px;
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-size: 10px; font-weight: 500; letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .badge-unesco { background: #1a6fc4; color: #fff; }
+  .badge-heritage { background: rgba(212,168,67,0.9); color: #0d1117; }
+
+  .card-save {
+    position: absolute; top: 12px; right: 12px;
+    width: 32px; height: 32px;
+    background: rgba(13,17,23,0.7);
+    border: 1px solid var(--border2);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; font-size: 14px;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .card-save:hover { background: var(--gold-dim); border-color: var(--gold); }
+
+  .card-overlay {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 60px;
+    background: linear-gradient(to top, rgba(13,17,23,0.9), transparent);
+  }
+
+  .card-location {
+    position: absolute; bottom: 10px; left: 12px;
+    font-size: 11px; color: rgba(255,255,255,0.7);
+    display: flex; align-items: center; gap: 4px;
+  }
+
+  .card-body { padding: 16px; }
+
+  .card-tags {
+    display: flex; gap: 6px; flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+
+  .card-tag {
+    padding: 2px 9px;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    font-size: 10px;
+    color: var(--gold);
+    letter-spacing: 0.04em;
+  }
+
+  .card-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem; font-weight: 600;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  .card-desc {
+    font-size: 12px; color: var(--text2); line-height: 1.6;
+    margin-bottom: 14px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .card-footer {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-top: 12px;
+    border-top: 1px solid var(--border2);
+  }
+
+  .card-rating {
+    display: flex; align-items: center; gap: 4px;
+    font-size: 12px; color: var(--text2);
+  }
+  .card-rating .star { color: var(--gold); }
+
+  .card-cta {
+    font-size: 12px; color: var(--gold); font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+
+  /* ─── FEATURES STRIP ─── */
+  .features-section {
+    background: var(--bg2);
+    border-top: 1px solid var(--border2);
+    border-bottom: 1px solid var(--border2);
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+  }
+
+  .feature-card {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    transition: border-color 0.3s, background 0.3s;
+    cursor: pointer;
+  }
+  .feature-card:hover {
+    border-color: var(--border);
+    background: var(--bg3);
+  }
+
+  .feature-icon {
+    width: 52px; height: 52px;
+    background: var(--gold-dim);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    margin: 0 auto 1rem;
+  }
+
+  .feature-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem; font-weight: 600;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  .feature-desc { font-size: 12px; color: var(--text2); line-height: 1.6; }
+
+  /* ─── TIMELINE ─── */
+  .timeline-section { background: var(--bg); }
+
+  .timeline {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%; transform: translateX(-50%);
+    top: 0; bottom: 0; width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--gold), var(--gold), transparent);
+    opacity: 0.3;
+  }
+
+  .timeline-item {
+    display: flex; gap: 2rem;
+    margin-bottom: 3rem;
+    position: relative;
+  }
+
+  .timeline-item:nth-child(even) { flex-direction: row-reverse; }
+
+  .timeline-content {
+    flex: 1;
+    background: var(--card);
+    border: 1px solid var(--border2);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    transition: border-color 0.2s;
+  }
+  .timeline-content:hover { border-color: var(--border); }
+
+  .timeline-dot {
+    width: 14px; height: 14px;
+    background: var(--gold);
+    border-radius: 50%;
+    border: 3px solid var(--bg);
+    position: absolute;
+    left: 50%; transform: translateX(-50%);
+    top: 1.25rem;
+    z-index: 1;
+  }
+
+  .timeline-era {
+    font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 4px;
+  }
+
+  .timeline-year {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; font-weight: 600;
+    color: var(--text); margin-bottom: 4px;
+  }
+
+  .timeline-event { font-size: 13px; color: var(--text2); }
+
+  .timeline-space { flex: 1; }
+
+  /* ─── AI SECTION ─── */
+  .ai-section {
+    background: var(--bg2);
+    border-top: 1px solid var(--border2);
+  }
+
+  .ai-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .ai-chat {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  .chat-header {
+    padding: 14px 18px;
+    background: var(--bg3);
+    border-bottom: 1px solid var(--border2);
+    display: flex; align-items: center; gap: 10px;
+  }
+
+  .chat-avatar {
+    width: 32px; height: 32px;
+    background: var(--gold);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+  }
+
+  .chat-info strong { font-size: 13px; color: var(--text); display: block; }
+  .chat-info span { font-size: 11px; color: #4caf7d; }
+
+  .chat-messages { padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+
+  .msg {
+    max-width: 85%;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 13px; line-height: 1.5;
+  }
+
+  .msg-ai {
+    background: var(--bg3);
+    border: 1px solid var(--border2);
+    color: var(--text2);
+    align-self: flex-start;
+  }
+
+  .msg-user {
+    background: var(--gold-dim);
+    border: 1px solid var(--border);
+    color: var(--text);
+    align-self: flex-end;
+  }
+
+  .chat-input-row {
+    display: flex; gap: 8px;
+    padding: 12px 16px;
+    border-top: 1px solid var(--border2);
+  }
+
+  .chat-input {
+    flex: 1; background: var(--bg3);
+    border: 1px solid var(--border2); border-radius: 6px;
+    color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 13px;
+    padding: 8px 12px; outline: none;
+    transition: border-color 0.2s;
+  }
+  .chat-input:focus { border-color: var(--gold); }
+
+  .chat-send {
+    padding: 8px 16px; background: var(--gold);
+    border: none; border-radius: 6px; color: #0d1117;
+    font-size: 13px; font-weight: 500; cursor: pointer;
+  }
+
+  .ai-copy { }
+
+  .ai-copy h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.25rem; font-weight: 600;
+    color: var(--text); margin-bottom: 1rem;
+  }
+
+  .ai-copy p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem; font-weight: 300;
+    color: var(--text2); line-height: 1.8;
+    margin-bottom: 1.5rem;
+  }
+
+  .ai-features { display: flex; flex-direction: column; gap: 10px; }
+
+  .ai-feat {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 13px; color: var(--text2);
+  }
+
+  .ai-feat-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--gold); flex-shrink: 0;
+  }
+
+  /* ─── STATES ─── */
+  .states-section { background: var(--bg); }
+
+  .states-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 12px;
+  }
+
+  .state-card {
+    background: var(--card);
+    border: 1px solid var(--border2);
+    border-radius: 10px;
+    padding: 1.25rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .state-card:hover {
+    border-color: var(--border);
+    background: var(--bg3);
+    transform: translateY(-2px);
+  }
+
+  .state-icon { font-size: 2rem; margin-bottom: 8px; }
+
+  .state-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.9rem; color: var(--text); font-weight: 600;
+    margin-bottom: 2px;
+  }
+
+  .state-count { font-size: 11px; color: var(--text3); }
+
+  /* ─── PRICING ─── */
+  .pricing-section { background: var(--bg2); border-top: 1px solid var(--border2); }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .pricing-card {
+    background: var(--card);
+    border: 1px solid var(--border2);
+    border-radius: 14px;
+    padding: 2rem;
+    position: relative;
+    transition: transform 0.25s;
+  }
+  .pricing-card:hover { transform: translateY(-4px); }
+
+  .pricing-card.featured {
+    border-color: var(--gold);
+    background: var(--bg3);
+  }
+
+  .pricing-popular {
+    position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+    background: var(--gold); color: #0d1117;
+    padding: 3px 14px; border-radius: 20px;
+    font-size: 10px; font-weight: 500; letter-spacing: 0.08em;
+    text-transform: uppercase; white-space: nowrap;
+  }
+
+  .pricing-tier {
+    font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 8px;
+  }
+
+  .pricing-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem; font-weight: 700;
+    color: var(--text); line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .pricing-price span { font-size: 1rem; color: var(--text3); font-family: 'DM Sans', sans-serif; }
+
+  .pricing-tagline {
+    font-size: 12px; color: var(--text2);
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border2);
+  }
+
+  .pricing-features { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 1.75rem; }
+
+  .pricing-features li {
+    font-size: 13px; color: var(--text2);
+    display: flex; align-items: center; gap: 8px;
+  }
+
+  .pricing-features li::before {
+    content: '✦';
+    font-size: 8px; color: var(--gold); flex-shrink: 0;
+  }
+
+  .pricing-features li.dim { color: var(--text3); }
+  .pricing-features li.dim::before { color: var(--text3); }
+
+  .btn-pricing {
+    width: 100%;
+    padding: 11px;
+    border-radius: 7px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px; font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-pricing-outline {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text);
+  }
+  .btn-pricing-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+  .btn-pricing-gold {
+    background: var(--gold); border: none;
+    color: #0d1117;
+  }
+  .btn-pricing-gold:hover { background: var(--gold2); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--bg);
+    border-top: 1px solid var(--border2);
+    padding: 4rem 3rem 2rem;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+  }
+
+  .footer-brand p {
+    font-size: 13px; color: var(--text3); line-height: 1.8;
+    margin: 12px 0;
+  }
+
+  .footer-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.9rem; font-weight: 600;
+    color: var(--text); margin-bottom: 1rem;
+  }
+
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+
+  .footer-links a {
+    text-decoration: none; font-size: 13px; color: var(--text3);
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--gold); }
+
+  .footer-bottom {
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border2);
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 12px; color: var(--text3);
+  }
+
+  /* ─── ANIMATIONS ─── */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    animation: fade-up-in 0.7s ease forwards;
+  }
+
+  @keyframes fade-up-in {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .delay-1 { animation-delay: 0.1s; }
+  .delay-2 { animation-delay: 0.2s; }
+  .delay-3 { animation-delay: 0.3s; }
+  .delay-4 { animation-delay: 0.4s; }
+  .delay-5 { animation-delay: 0.5s; }
+
+  /* typewriter */
+  .typewriter {
+    overflow: hidden;
+    border-right: 2px solid var(--gold);
+    white-space: nowrap;
+    animation: typing 2.5s steps(20) 0.5s both, blink 0.75s step-end infinite 3s;
+  }
+  @keyframes typing { from { width: 0; } to { width: 100%; } }
+  @keyframes blink { 50% { border-color: transparent; } }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    nav { padding: 0 1.5rem; }
+    .nav-links { display: none; }
+    section { padding: 4rem 1.5rem; }
+    .pricing-grid { grid-template-columns: 1fr; max-width: 360px; }
+    .ai-layout { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .timeline::before { left: 12px; }
+    .timeline-item { flex-direction: row !important; padding-left: 2rem; }
+    .timeline-space { display: none; }
+    .timeline-dot { left: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-icon">🏛</div>
+    <div class="nav-logo-text">
+      <strong>Walk Through</strong>
+      <span>History</span>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a href="#explore" class="active">Explore</a>
+    <a href="#ai">AI Guide</a>
+    <a href="#map">Map</a>
+    <a href="#timeline">Timeline</a>
+    <a href="#pricing">Plans</a>
+  </div>
+  <div class="nav-actions">
+    <button class="btn-outline" onclick="alert('Sign In coming soon!')">Sign In</button>
+    <button class="btn-gold" onclick="alert('Welcome! Get Started clicked.')">Get Started</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-arch"></div>
+  <div class="hero-arch"></div>
+  <div class="hero-arch"></div>
+
+  <!-- Particles -->
+  <div class="particles" id="particles"></div>
+
+  <p class="hero-eyebrow fade-up">India's Heritage</p>
+
+  <h1 class="hero-title fade-up delay-1">
+    Explore <em>Ancient</em><br>Monuments
+  </h1>
+
+  <p class="hero-sub fade-up delay-2">
+    Discover India's magnificent historical landmarks — from Mughal marvels to ancient Dravidian temples — with an AI guide by your side.
+  </p>
+
+  <div class="hero-ctas fade-up delay-3">
+    <button class="btn-hero-primary" onclick="document.getElementById('explore').scrollIntoView({behavior:'smooth'})">Explore Monuments</button>
+    <button class="btn-hero-sec" onclick="document.getElementById('ai').scrollIntoView({behavior:'smooth'})">Meet AI Guide</button>
+  </div>
+
+  <div class="hero-stats fade-up delay-4">
+    <div class="hero-stat">
+      <span class="hero-stat-num">500+</span>
+      <span class="hero-stat-label">Monuments</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">28</span>
+      <span class="hero-stat-label">States</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">40+</span>
+      <span class="hero-stat-label">UNESCO Sites</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">3D</span>
+      <span class="hero-stat-label">Virtual Tours</span>
+    </div>
+  </div>
+</section>
+
+<!-- SEARCH -->
+<div class="search-section" id="explore">
+  <div class="search-bar">
+    <span style="color:var(--text3);font-size:15px;">🔍</span>
+    <input type="text" id="searchInput" placeholder="Search monuments, cities, or states..." oninput="filterMonuments()">
+    <button onclick="filterMonuments()">Search</button>
+  </div>
+  <div class="filter-pills">
+    <button class="filter-pill active" onclick="setFilter(this,'all')">All</button>
+    <button class="filter-pill" onclick="setFilter(this,'mughal')">Mughal</button>
+    <button class="filter-pill" onclick="setFilter(this,'temple')">Temples</button>
+    <button class="filter-pill" onclick="setFilter(this,'fort')">Forts</button>
+    <button class="filter-pill" onclick="setFilter(this,'buddhist')">Buddhist</button>
+    <button class="filter-pill" onclick="setFilter(this,'dravidian')">Dravidian</button>
+    <button class="filter-pill" onclick="setFilter(this,'unesco')">UNESCO</button>
+  </div>
+</div>
+
+<!-- MONUMENTS -->
+<section class="monuments-section">
+  <div class="monuments-toolbar">
+    <p class="monuments-count">Showing <strong id="countLabel">10</strong> monuments</p>
+    <select class="sort-select" onchange="sortMonuments(this.value)">
+      <option value="default">Sort: Default</option>
+      <option value="name">Name A–Z</option>
+      <option value="rating">Top Rated</option>
+      <option value="era">By Era</option>
+    </select>
+    <div class="view-toggle">
+      <button class="view-btn active" onclick="setView(this,'grid')" title="Grid">⊞</button>
+      <button class="view-btn" onclick="setView(this,'list')" title="List">☰</button>
+    </div>
+  </div>
+
+  <div class="monuments-grid" id="monumentsGrid"></div>
+</section>
+
+<!-- FEATURES -->
+<section class="features-section">
+  <div class="section-header">
+    <p class="section-eyebrow">Platform Features</p>
+    <h2 class="section-title">Everything You Need</h2>
+    <p class="section-sub">A complete toolkit for discovering and experiencing India's heritage.</p>
+  </div>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">🗿</div>
+      <p class="feature-name">3D Monument Viewer</p>
+      <p class="feature-desc">Immersive Three.js models with orbit controls, star fields, and gold hotspots.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🤖</div>
+      <p class="feature-name">AI Heritage Guide</p>
+      <p class="feature-desc">Chat with an AI that knows every monument's history, legends, and best visit times.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🗺</div>
+      <p class="feature-name">Interactive Map</p>
+      <p class="feature-desc">Navigate all monuments on an SVG grid map with category filters and pins.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📅</div>
+      <p class="feature-name">Travel Planner</p>
+      <p class="feature-desc">AI-generated day-by-day itineraries with morning, afternoon, and evening breakdowns.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🎪</div>
+      <p class="feature-name">Festival Mode</p>
+      <p class="feature-desc">8 cultural festivals linked to the monuments where they're celebrated.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">💎</div>
+      <p class="feature-name">Hidden Gems</p>
+      <p class="feature-desc">9 AI-curated lesser-known wonders most tourists never discover.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="timeline-section" id="timeline">
+  <div class="section-header">
+    <p class="section-eyebrow">Through the Ages</p>
+    <h2 class="section-title">India's Historical Eras</h2>
+    <p class="section-sub">Journey through 5,000 years of civilization, empire, and artistry.</p>
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-content">
+        <p class="timeline-era">Ancient India</p>
+        <p class="timeline-year">3000 BCE</p>
+        <p class="timeline-event">Indus Valley Civilization — Mohenjo-daro and Harappa establish the world's first planned cities.</p>
+      </div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-space"></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-space"></div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <p class="timeline-era">Maurya Empire</p>
+        <p class="timeline-year">322 BCE</p>
+        <p class="timeline-event">Ashoka spreads Buddhism across Asia, leaving a legacy of rock edicts and the Sanchi Stupa.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-content">
+        <p class="timeline-era">Gupta Period</p>
+        <p class="timeline-year">320 CE</p>
+        <p class="timeline-event">India's golden age of science, art, and literature. The Ajanta Caves reach their pinnacle.</p>
+      </div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-space"></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-space"></div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <p class="timeline-era">Mughal Era</p>
+        <p class="timeline-year">1526 CE</p>
+        <p class="timeline-event">Babur founds the Mughal Empire. Shah Jahan builds the Taj Mahal as an eternal monument to love.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-content">
+        <p class="timeline-era">Colonial Period</p>
+        <p class="timeline-year">1858 CE</p>
+        <p class="timeline-event">British Raj begins. The Gateway of India rises in Bombay as a symbol of imperial rule.</p>
+      </div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-space"></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-space"></div>
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <p class="timeline-era">Modern India</p>
+        <p class="timeline-year">1947 CE</p>
+        <p class="timeline-event">Independence. India inherits the world's richest repository of historical monuments.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AI SECTION -->
+<section class="ai-section" id="ai">
+  <div class="ai-layout">
+    <div class="ai-chat">
+      <div class="chat-header">
+        <div class="chat-avatar">🤖</div>
+        <div class="chat-info">
+          <strong>Heritage AI Guide</strong>
+          <span>● Online</span>
+        </div>
+      </div>
+      <div class="chat-messages" id="chatMessages">
+        <div class="msg msg-ai">Namaste! I'm your Heritage AI Guide. Ask me about any Indian monument, its history, or plan your visit. 🙏</div>
+        <div class="msg msg-user">Tell me about the Taj Mahal.</div>
+        <div class="msg msg-ai">The Taj Mahal was commissioned by Shah Jahan in 1632 CE as a mausoleum for his beloved wife Mumtaz Mahal. Built over 22 years by 20,000 artisans, it represents the zenith of Mughal architecture — combining Persian, Islamic, and Indian styles. It's a UNESCO World Heritage Site and one of the Seven Wonders of the World. Best visited at sunrise when the marble glows pink. ✨</div>
+      </div>
+      <div class="chat-input-row">
+        <input type="text" class="chat-input" id="chatInput" placeholder="Ask about any monument..." onkeydown="if(event.key==='Enter')sendChat()">
+        <button class="chat-send" onclick="sendChat()">Send</button>
+      </div>
+    </div>
+
+    <div class="ai-copy">
+      <h2>Your Personal Heritage Guide</h2>
+      <p>Powered by AI, trained on India's history. Get instant answers about architecture, legends, visiting hours, and hidden stories behind every monument.</p>
+      <div class="ai-features">
+        <div class="ai-feat"><div class="ai-feat-dot"></div>Voice input with Web Speech API</div>
+        <div class="ai-feat"><div class="ai-feat-dot"></div>Monument-specific context awareness</div>
+        <div class="ai-feat"><div class="ai-feat-dot"></div>AI-generated travel itineraries</div>
+        <div class="ai-feat"><div class="ai-feat-dot"></div>Historical stories & folklore</div>
+        <div class="ai-feat"><div class="ai-feat-dot"></div>Best time to visit recommendations</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATES -->
+<section class="states-section" id="map">
+  <div class="section-header">
+    <p class="section-eyebrow">Browse by State</p>
+    <h2 class="section-title">Explore All of India</h2>
+    <p class="section-sub">From the Himalayas to the tip of Kanyakumari.</p>
+  </div>
+  <div class="states-grid">
+    <div class="state-card"><div class="state-icon">🕌</div><p class="state-name">Uttar Pradesh</p><p class="state-count">42 monuments</p></div>
+    <div class="state-card"><div class="state-icon">🔴</div><p class="state-name">Delhi</p><p class="state-count">38 monuments</p></div>
+    <div class="state-card"><div class="state-icon">🌊</div><p class="state-name">Maharashtra</p><p class="state-count">31 monuments</p></div>
+    <div class="state-card"><div class="state-icon">🌸</div><p class="state-name">Rajasthan</p><p class="state-count">55 monuments</p></div>
+    <div class="state-card"><div class="state-icon">🏔</div><p class="state-name">Jammu & Kashmir</p><p class="state-count">18 monuments</p></div>
+    <div class="state-card"><div class="state-icon">🌴</div><p class="state-name">Tamil Nadu</p><p class="state-count">47 monuments</p></div>
+    <div class="state-card"><div class="state-icon">🪷</div><p class="state-name">Madhya Pradesh</p><p class="state-count">29 monuments</p></div>
+    <div class="state-card"><div class="state-icon">⛩</div><p class="state-name">Karnataka</p><p class="state-count">35 monuments</p></div>
+    <div class="state-card"><div class="state-icon">🎭</div><p class="state-name">Gujarat</p><p class="state-count">22 monuments</p></div>
+    <div class="state-card"><div class="state-icon">🌿</div><p class="state-name">Kerala</p><p class="state-count">16 monuments</p></div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing-section" id="pricing">
+  <div class="section-header">
+    <p class="section-eyebrow">Subscription Plans</p>
+    <h2 class="section-title">Choose Your Journey</h2>
+    <p class="section-sub">From casual explorer to dedicated historian.</p>
+  </div>
+
+  <div class="pricing-grid">
+    <div class="pricing-card">
+      <p class="pricing-tier">Explorer</p>
+      <p class="pricing-price">₹0 <span>/ month</span></p>
+      <p class="pricing-tagline">Perfect for getting started</p>
+      <ul class="pricing-features">
+        <li>Browse all monuments</li>
+        <li>Basic monument details</li>
+        <li>Map navigation</li>
+        <li class="dim">3D Viewer (3 monuments)</li>
+        <li class="dim">AI Guide (5 queries/day)</li>
+        <li class="dim">Travel Planner</li>
+      </ul>
+      <button class="btn-pricing btn-pricing-outline">Get Started Free</button>
+    </div>
+
+    <div class="pricing-card featured">
+      <div class="pricing-popular">Most Popular</div>
+      <p class="pricing-tier">Historian</p>
+      <p class="pricing-price">₹299 <span>/ month</span></p>
+      <p class="pricing-tagline">For the serious heritage enthusiast</p>
+      <ul class="pricing-features">
+        <li>Everything in Explorer</li>
+        <li>Unlimited 3D Viewer access</li>
+        <li>AI Guide unlimited queries</li>
+        <li>Full Travel Planner</li>
+        <li>Travel Diary & History</li>
+        <li class="dim">Premium hidden gems</li>
+      </ul>
+      <button class="btn-pricing btn-pricing-gold">Start Historian Plan</button>
+    </div>
+
+    <div class="pricing-card">
+      <p class="pricing-tier">Maharaja</p>
+      <p class="pricing-price">₹799 <span>/ month</span></p>
+      <p class="pricing-tagline">The ultimate heritage experience</p>
+      <ul class="pricing-features">
+        <li>Everything in Historian</li>
+        <li>Hidden Gems collection</li>
+        <li>Festival Mode & Alerts</li>
+        <li>Expert-led virtual tours</li>
+        <li>Offline access</li>
+        <li>Priority AI responses</li>
+      </ul>
+      <button class="btn-pricing btn-pricing-outline">Go Maharaja</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="nav-logo" style="display:inline-flex;margin-bottom:12px;">
+        <div class="nav-logo-icon">🏛</div>
+        <div class="nav-logo-text">
+          <strong>Walk Through</strong>
+          <span>History</span>
+        </div>
+      </div>
+      <p>Discover the stories carved in stone across India's 5,000-year heritage. Powered by AI, built with love for history.</p>
+    </div>
+
+    <div>
+      <p class="footer-heading">Explore</p>
+      <ul class="footer-links">
+        <li><a href="#">All Monuments</a></li>
+        <li><a href="#">UNESCO Sites</a></li>
+        <li><a href="#">Hidden Gems</a></li>
+        <li><a href="#">3D Viewer</a></li>
+        <li><a href="#">Virtual Tours</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <p class="footer-heading">Discover</p>
+      <ul class="footer-links">
+        <li><a href="#">Historical Timeline</a></li>
+        <li><a href="#">Festival Mode</a></li>
+        <li><a href="#">State Browse</a></li>
+        <li><a href="#">Monument Quiz</a></li>
+        <li><a href="#">Travel Planner</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <p class="footer-heading">Company</p>
+      <ul class="footer-links">
+        <li><a href="#">About</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Use</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span>© 2025 Walk Through History. All rights reserved.</span>
+    <span>Made with ❤ for India's heritage</span>
+  </div>
+</footer>
+
+<script>
+// ─── DATA ───
+const monuments = [
+  { id:1, name:"Taj Mahal", location:"Agra, Uttar Pradesh", tags:["Mughal","UNESCO","Mausoleum"], type:["mughal","unesco"], img:"https://images.unsplash.com/photo-1587474260584-136574528ed5?w=600&q=80", rating:4.9, desc:"An ivory-white marble mausoleum on the right bank of the river Yamuna, commissioned in 1632 by Mughal emperor Shah Jahan.", badge:"unesco" },
+  { id:2, name:"Red Fort", location:"Delhi, Delhi", tags:["Mughal","UNESCO","Fort"], type:["mughal","fort","unesco"], img:"https://images.unsplash.com/photo-1548013146-72479768bada?w=600&q=80", rating:4.7, desc:"A historic fort that served as the main residence of the Mughal Emperors for nearly 200 years.", badge:"unesco" },
+  { id:3, name:"Qutub Minar", location:"Delhi, Delhi", tags:["Delhi Sultanate","UNESCO","Minaret"], type:["unesco"], img:"https://images.unsplash.com/photo-1602643245094-53a7eb66ead4?w=600&q=80", rating:4.6, desc:"The tallest minaret in India, built in 1193 by Qutb ud-Din Aibak after the defeat of Delhi's last Hindu kingdom.", badge:"unesco" },
+  { id:4, name:"Hampi Ruins", location:"Karnataka", tags:["Vijayanagara","UNESCO","Temple"], type:["temple","unesco","dravidian"], img:"https://images.unsplash.com/photo-1588416936097-41850ab3d86d?w=600&q=80", rating:4.8, desc:"Ruins of Vijayanagara, the last great Hindu kingdom. A surreal landscape of boulders and ancient temples.", badge:"unesco" },
+  { id:5, name:"Khajuraho Temples", location:"Madhya Pradesh", tags:["Chandela","UNESCO","Temple"], type:["temple","unesco"], img:"https://images.unsplash.com/photo-1609766418204-5a5bde3f3424?w=600&q=80", rating:4.7, desc:"A group of Hindu and Jain temples famous for their Nagara-style architectural symbolism.", badge:"unesco" },
+  { id:6, name:"Mehrangarh Fort", location:"Jodhpur, Rajasthan", tags:["Rajput","Fort","Marwar"], type:["fort"], img:"https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=600&q=80", rating:4.8, desc:"One of the largest forts in India, sitting 400 feet above the blue city of Jodhpur with sweeping panoramic views.", badge:"heritage" },
+  { id:7, name:"Sanchi Stupa", location:"Madhya Pradesh", tags:["Buddhist","UNESCO","Stupa"], type:["buddhist","unesco"], img:"https://images.unsplash.com/photo-1596397249129-c7a8cd2b3a2c?w=600&q=80", rating:4.5, desc:"The oldest stone structure in India, commissioned by Emperor Ashoka in the 3rd century BCE.", badge:"unesco" },
+  { id:8, name:"Hawa Mahal", location:"Jaipur, Rajasthan", tags:["Rajput","Palace","Pink City"], type:["fort"], img:"https://images.unsplash.com/photo-1477587458883-47145ed6979c?w=600&q=80", rating:4.6, desc:"The Palace of Winds — a five-story pyramidal façade with 953 small windows decorated with intricate latticework.", badge:"heritage" },
+  { id:9, name:"Ajanta Caves", location:"Maharashtra", tags:["Buddhist","UNESCO","Cave"], type:["buddhist","unesco"], img:"https://images.unsplash.com/photo-1596568401847-8c1e9e7e3d79?w=600&q=80", rating:4.7, desc:"30 rock-cut Buddhist cave monuments dating from the 2nd century BCE, renowned for their extraordinary murals.", badge:"unesco" },
+  { id:10, name:"Brihadeeswarar Temple", location:"Thanjavur, Tamil Nadu", tags:["Chola","UNESCO","Temple"], type:["temple","dravidian","unesco"], img:"https://images.unsplash.com/photo-1584138793498-4b1bca1d0c9e?w=600&q=80", rating:4.8, desc:"A masterpiece of Chola architecture, the 1000-year-old temple's vimana rises to 66 metres with a single capstone weighing 80 tonnes.", badge:"unesco" },
+];
+
+let currentFilter = 'all';
+let currentSort = 'default';
+let filtered = [...monuments];
+
+function renderMonuments() {
+  const grid = document.getElementById('monumentsGrid');
+  document.getElementById('countLabel').textContent = filtered.length;
+
+  grid.innerHTML = filtered.map((m, i) => `
+    <div class="monument-card" style="animation-delay:${i*0.06}s" onclick="openMonument(${m.id})">
+      <div class="card-img">
+        <img src="${m.img}" alt="${m.name}" loading="lazy">
+        <span class="card-badge badge-${m.badge}">${m.badge === 'unesco' ? 'UNESCO' : 'Heritage'}</span>
+        <button class="card-save" onclick="event.stopPropagation();this.textContent=this.textContent==='🔖'?'🔖':'🔖';" title="Save">🔖</button>
+        <div class="card-overlay"></div>
+        <div class="card-location">📍 ${m.location}</div>
+      </div>
+      <div class="card-body">
+        <div class="card-tags">${m.tags.map(t=>`<span class="card-tag">${t}</span>`).join('')}</div>
+        <h3 class="card-name">${m.name}</h3>
+        <p class="card-desc">${m.desc}</p>
+        <div class="card-footer">
+          <div class="card-rating"><span class="star">★</span> ${m.rating} / 5.0</div>
+          <span class="card-cta">Explore →</span>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function setFilter(el, f) {
+  currentFilter = f;
+  document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+  el.classList.add('active');
+  applyFilters();
+}
+
+function filterMonuments() {
+  applyFilters();
+}
+
+function applyFilters() {
+  const query = document.getElementById('searchInput').value.toLowerCase();
+  filtered = monuments.filter(m => {
+    const matchQuery = !query || m.name.toLowerCase().includes(query) || m.location.toLowerCase().includes(query) || m.tags.some(t => t.toLowerCase().includes(query));
+    const matchFilter = currentFilter === 'all' || m.type.includes(currentFilter);
+    return matchQuery && matchFilter;
+  });
+  sortMonuments(currentSort);
+  renderMonuments();
+}
+
+function sortMonuments(val) {
+  currentSort = val;
+  if (val === 'name') filtered.sort((a,b) => a.name.localeCompare(b.name));
+  else if (val === 'rating') filtered.sort((a,b) => b.rating - a.rating);
+  else if (val === 'era') filtered.sort((a,b) => a.id - b.id);
+  else filtered.sort((a,b) => a.id - b.id);
+  renderMonuments();
+}
+
+function setView(btn, view) {
+  document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const grid = document.getElementById('monumentsGrid');
+  if (view === 'list') {
+    grid.style.gridTemplateColumns = '1fr';
+  } else {
+    grid.style.gridTemplateColumns = 'repeat(auto-fill, minmax(320px, 1fr))';
+  }
+}
+
+function openMonument(id) {
+  const m = monuments.find(x => x.id === id);
+  alert(`🏛 ${m.name}\n\n📍 ${m.location}\n⭐ ${m.rating}/5.0\n\n${m.desc}`);
+}
+
+// ─── CHAT ───
+const aiResponses = {
+  default: "That's a fascinating question! India's heritage spans over 5,000 years. Could you be more specific about which monument or era you'd like to explore?",
+  "taj mahal": "The Taj Mahal in Agra is a UNESCO World Heritage Site and one of the Seven Wonders of the World. Built by Shah Jahan (1632–1653) in memory of his wife Mumtaz Mahal, it took 22 years and 20,000 artisans. The white marble changes color throughout the day — pinkish at dawn, brilliant white at noon, and golden at moonlight. Best time to visit: October to March, arriving before sunrise. ✨",
+  "red fort": "The Red Fort (Lal Qila) in Delhi was the main residence of Mughal emperors from 1648 to 1857. Built by Shah Jahan, it covers 254 acres and is surrounded by a 2.5 km moat. Every year on Independence Day, India's Prime Minister hoists the national flag here. It's a UNESCO World Heritage Site since 2007. 🏰",
+  "rajasthan": "Rajasthan is India's largest state by area and home to some of its most spectacular forts and palaces. The 'Land of Kings' has Jaipur (Hawa Mahal, Amber Fort), Jodhpur (Mehrangarh Fort), Udaipur (City Palace), and Jaisalmer (the golden sandstone fort). The best time to visit is October to March. 🌅",
+  "best time": "The best time to visit most Indian monuments is October to March when weather is cool and pleasant. Avoid May-June (extreme heat) and July-September (monsoon). Early mornings offer golden light for photography and fewer crowds. Most ASI monuments are open from 6 AM to 6 PM. 🌤",
+};
+
+function sendChat() {
+  const input = document.getElementById('chatInput');
+  const msg = input.value.trim();
+  if (!msg) return;
+
+  const msgs = document.getElementById('chatMessages');
+
+  // User message
+  const userDiv = document.createElement('div');
+  userDiv.className = 'msg msg-user';
+  userDiv.textContent = msg;
+  msgs.appendChild(userDiv);
+  input.value = '';
+
+  // Typing indicator
+  const typing = document.createElement('div');
+  typing.className = 'msg msg-ai';
+  typing.textContent = '...';
+  msgs.appendChild(typing);
+  msgs.scrollTop = msgs.scrollHeight;
+
+  setTimeout(() => {
+    const lower = msg.toLowerCase();
+    let response = aiResponses.default;
+    for (const [key, val] of Object.entries(aiResponses)) {
+      if (key !== 'default' && lower.includes(key)) { response = val; break; }
+    }
+    typing.textContent = response;
+    msgs.scrollTop = msgs.scrollHeight;
+  }, 1200);
+}
+
+// ─── PARTICLES ───
+(function spawnParticles() {
+  const container = document.getElementById('particles');
+  if (!container) return;
+  for (let i = 0; i < 20; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.left = Math.random() * 100 + '%';
+    p.style.bottom = '-10px';
+    p.style.animationDuration = (8 + Math.random() * 12) + 's';
+    p.style.animationDelay = (Math.random() * 10) + 's';
+    p.style.width = p.style.height = (1 + Math.random() * 3) + 'px';
+    container.appendChild(p);
+  }
+})();
+
+// ─── INIT ───
+renderMonuments();
+</script>
+</body>
+</html>
