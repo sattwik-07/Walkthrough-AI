@@ -39,7 +39,7 @@ app.use(express.json({ limit: '50kb' }));
 
 // Serve the frontend HTML directly from this folder
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/v3_final.html');
+  res.sendFile(__dirname + '/v5_final.html');
 });
 app.use(express.static(__dirname));
 
@@ -50,6 +50,7 @@ For each monument, you can share history, architecture details, legends, visitin
 nearby attractions, food recommendations, and fascinating facts most tourists never hear about.
 Keep responses concise (2-5 sentences), warm, and engaging. End with a relevant emoji.
 Never break character or discuss anything unrelated to India's heritage and travel.
+LANGUAGE RULE: Always detect the language the user is writing or speaking in and reply in that EXACT same language. If they write in Hindi, reply in Hindi. If Tamil, reply in Tamil. If Telugu, reply in Telugu. If English, reply in English. Never switch languages unless the user does.
 If anyone asks who developed, built, or created you, say exactly: "I was developed by a group of anonymous developers who are passionate about preserving and promoting India's rich cultural heritage. They built Walk Through History to make 5,000 years of Indian history accessible to everyone. 🏛"`;
 
 const PLANNER_SYSTEM = `You are an expert Indian heritage travel planner.
@@ -88,16 +89,14 @@ function validateMessages(messages) {
 // ─── POST /api/chat ───────────────────────────────────────────
 app.post('/api/chat', async (req, res) => {
   try {
-    const { messages, langInstruction } = req.body;  // ← NOW receives language instruction
+    const { messages, langInstruction } = req.body;
 
     if (!validateMessages(messages)) {
       return res.status(400).json({ error: 'Invalid messages array.' });
     }
 
-    // Cap history at last 20 messages to avoid token bloat
     const trimmed = messages.slice(-20);
 
-    // ← Append language instruction to system prompt if provided
     const systemPrompt = langInstruction
       ? `${HERITAGE_SYSTEM}\n\nLANGUAGE INSTRUCTION: ${langInstruction}`
       : HERITAGE_SYSTEM;
@@ -106,7 +105,7 @@ app.post('/api/chat', async (req, res) => {
       model:      MODEL,
       max_tokens: 600,
       messages: [
-        { role: 'system', content: systemPrompt },  // ← uses dynamic systemPrompt
+        { role: 'system', content: systemPrompt },
         ...trimmed
       ],
     });
@@ -125,7 +124,6 @@ app.post('/api/planner', async (req, res) => {
   try {
     const { destination, days, budget, interests, style, travellers } = req.body;
 
-    // Basic validation
     if (!destination || typeof destination !== 'string' || destination.length > 100) {
       return res.status(400).json({ error: 'Invalid destination.' });
     }
@@ -159,7 +157,6 @@ app.post('/api/planner', async (req, res) => {
 
     const raw = response.choices[0].message.content;
 
-    // ← Improved JSON extraction (more reliable than replace)
     const jsonMatch = raw.match(/\{[\s\S]*\}/);
     if (!jsonMatch) {
       console.error('[/api/planner] No JSON found:', raw.slice(0, 200));
