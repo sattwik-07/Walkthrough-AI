@@ -1,14 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════
    WALK THROUGH HISTORY — Backend Server (Groq Edition)
-   Uses Groq's free API (Llama 3) instead of Anthropic.
-
-   Routes:
-     POST /api/chat      — Heritage AI Guide chat
-     POST /api/planner   — AI Travel Itinerary generator
-
-   Run:
-     node server.js          (production)
-     npx nodemon server.js   (development, auto-restart)
    ═══════════════════════════════════════════════════════════════ */
 
 require('dotenv').config();
@@ -19,17 +10,14 @@ const Groq    = require('groq-sdk');
 const app  = express();
 const port = process.env.PORT || 3000;
 
-// ─── GROQ CLIENT ──────────────────────────────────────────────
 if (!process.env.GROQ_API_KEY) {
-  console.error('\n❌  GROQ_API_KEY is not set.');
-  console.error('    Create a .env file with:  GROQ_API_KEY=gsk_...\n');
+  console.error('\n❌  GROQ_API_KEY is not set.\n');
   process.exit(1);
 }
 
 const groq  = new Groq({ apiKey: process.env.GROQ_API_KEY });
 const MODEL = 'llama-3.1-8b-instant';
 
-// ─── MIDDLEWARE ───────────────────────────────────────────────
 app.use(cors({
   origin: process.env.ALLOWED_ORIGIN || '*',
   methods: ['POST', 'OPTIONS', 'GET'],
@@ -37,21 +25,32 @@ app.use(cors({
 }));
 app.use(express.json({ limit: '50kb' }));
 
-// Serve the frontend HTML directly from this folder
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/v5_final.html');
 });
 app.use(express.static(__dirname));
 
-// ─── SYSTEM PROMPTS ───────────────────────────────────────────
-const HERITAGE_SYSTEM = `You are a knowledgeable and enthusiastic Heritage AI Guide for India's monuments and history.
+// ─── LANGUAGE RULES (placed FIRST in prompt so model obeys) ──
+const LANG_RULES = {
+  en: `CRITICAL RULE: You MUST reply ONLY in English. Do NOT use any other language.`,
+  hi: `अति महत्वपूर्ण नियम: तुम्हें केवल हिंदी में जवाब देना है। एक भी शब्द अंग्रेज़ी में मत लिखो। पूरा जवाब हिंदी में होना चाहिए।`,
+  ta: `முக்கியமான விதி: நீங்கள் தமிழில் மட்டுமே பதில் அளிக்க வேண்டும். ஆங்கிலம் பயன்படுத்தாதீர்கள். முழு பதிலும் தமிழில் இருக்க வேண்டும்.`,
+  te: `అత్యంత ముఖ్యమైన నియమం: మీరు తెలుగులో మాత్రమే సమాధానం ఇవ్వాలి. ఆంగ్లం ఉపయోగించవద్దు. మొత్తం సమాధానం తెలుగులో ఉండాలి.`,
+  bn: `গুরুত্বপূর্ণ নিয়ম: আপনাকে শুধুমাত্র বাংলায় উত্তর দিতে হবে। ইংরেজি ব্যবহার করবেন না। সম্পূর্ণ উত্তর বাংলায় হতে হবে।`,
+  mr: `अत्यंत महत्त्वाचा नियम: तुम्ही फक्त मराठीत उत्तर द्यायचे आहे. इंग्रजी वापरू नका. संपूर्ण उत्तर मराठीत असणे आवश्यक आहे.`,
+  gu: `અત્યંત મહત્વપૂર્ણ નિયમ: તમારે ફક્ત ગુજરાતીમાં જ જવાબ આપવાનો છે. અંગ્રેજી વાપરશો નહીં. આખો જવાબ ગુજરાતીમાં હોવો જોઈએ.`,
+  kn: `ಅತ್ಯಂತ ಮಹತ್ವದ ನಿಯಮ: ನೀವು ಕೇವಲ ಕನ್ನಡದಲ್ಲಿ ಮಾತ್ರ ಉತ್ತರಿಸಬೇಕು. ಇಂಗ್ಲಿಷ್ ಬಳಸಬೇಡಿ. ಸಂಪೂರ್ಣ ಉತ್ತರ ಕನ್ನಡದಲ್ಲಿ ಇರಬೇಕು.`,
+  pa: `ਬਹੁਤ ਜ਼ਰੂਰੀ ਨਿਯਮ: ਤੁਹਾਨੂੰ ਸਿਰਫ਼ ਪੰਜਾਬੀ ਵਿੱਚ ਜਵਾਬ ਦੇਣਾ ਹੈ। ਅੰਗਰੇਜ਼ੀ ਨਾ ਵਰਤੋ। ਪੂਰਾ ਜਵਾਬ ਪੰਜਾਬੀ ਵਿੱਚ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ।`,
+  ml: `അത്യന്തം പ്രധാനപ്പെട്ട നിയമം: നിങ്ങൾ മലയാളത്തിൽ മാത്രം മറുപടി നൽകണം. ഇംഗ്ലീഷ് ഉപയോഗിക്കരുത്. മുഴുവൻ ഉത്തരവും മലയാളത്തിൽ ആയിരിക്കണം.`,
+};
+
+const HERITAGE_SYSTEM = `You are a knowledgeable, friendly, and enthusiastic Heritage AI Guide for India's monuments and history.
 You know everything about Indian historical monuments — Mughal, Rajput, Dravidian, Buddhist, Colonial, and more.
 For each monument, you can share history, architecture details, legends, visiting hours, photography tips,
 nearby attractions, food recommendations, and fascinating facts most tourists never hear about.
-Keep responses concise (2-5 sentences), warm, and engaging. End with a relevant emoji.
+Keep responses concise (2-5 sentences), warm, and engaging. Greet the user warmly if they say hello. End with a relevant emoji.
 Never break character or discuss anything unrelated to India's heritage and travel.
-LANGUAGE RULE: Always detect the language the user is writing or speaking in and reply in that EXACT same language. If they write in Hindi, reply in Hindi. If Tamil, reply in Tamil. If Telugu, reply in Telugu. If English, reply in English. Never switch languages unless the user does.
-If anyone asks who developed, built, or created you, say exactly: "I was developed by a group of anonymous developers who are passionate about preserving and promoting India's rich cultural heritage. They built Walk Through History to make 5,000 years of Indian history accessible to everyone. 🏛"`;
+If anyone asks who developed, built, or created you, say exactly: "I was developed by the Walk Through History team to be your personal Heritage AI Guide. 🏛"`;
 
 const PLANNER_SYSTEM = `You are an expert Indian heritage travel planner.
 Generate a day-by-day heritage travel itinerary in strict JSON format — no markdown, no backticks, no preamble.
@@ -74,7 +73,6 @@ Respond ONLY with a valid JSON object in exactly this structure:
 The "days" object must have exactly as many keys as the requested number of days.
 Focus on authentic heritage monuments, cultural experiences, and local food.`;
 
-// ─── HELPER ───────────────────────────────────────────────────
 function validateMessages(messages) {
   if (!Array.isArray(messages) || messages.length === 0) return false;
   return messages.every(m =>
@@ -89,7 +87,7 @@ function validateMessages(messages) {
 // ─── POST /api/chat ───────────────────────────────────────────
 app.post('/api/chat', async (req, res) => {
   try {
-    const { messages, langInstruction } = req.body;
+    const { messages, langInstruction, langCode } = req.body;
 
     if (!validateMessages(messages)) {
       return res.status(400).json({ error: 'Invalid messages array.' });
@@ -97,9 +95,9 @@ app.post('/api/chat', async (req, res) => {
 
     const trimmed = messages.slice(-20);
 
-    const systemPrompt = langInstruction
-      ? `${HERITAGE_SYSTEM}\n\nLANGUAGE INSTRUCTION: ${langInstruction}`
-      : HERITAGE_SYSTEM;
+    // Language rule goes FIRST — model must see it before anything else
+    const rule = LANG_RULES[langCode] || LANG_RULES['en'];
+    const systemPrompt = `${rule}\n\n${HERITAGE_SYSTEM}`;
 
     const response = await groq.chat.completions.create({
       model:      MODEL,
@@ -156,7 +154,6 @@ app.post('/api/planner', async (req, res) => {
     });
 
     const raw = response.choices[0].message.content;
-
     const jsonMatch = raw.match(/\{[\s\S]*\}/);
     if (!jsonMatch) {
       console.error('[/api/planner] No JSON found:', raw.slice(0, 200));
@@ -167,7 +164,6 @@ app.post('/api/planner', async (req, res) => {
     try {
       itinerary = JSON.parse(jsonMatch[0]);
     } catch {
-      console.error('[/api/planner] JSON parse failed');
       return res.status(500).json({ error: 'Failed to parse itinerary. Please try again.' });
     }
 
@@ -182,6 +178,35 @@ app.post('/api/planner', async (req, res) => {
 // ─── HEALTH CHECK ─────────────────────────────────────────────
 app.get('/api/health', (_req, res) => {
   res.json({ status: 'ok', model: MODEL, timestamp: new Date().toISOString() });
+});
+
+// ─── TTS PROXY (bypasses CORS for Google Translate TTS) ───────
+app.get('/api/tts', async (req, res) => {
+  try {
+    const { text, lang } = req.query;
+    if (!text || !lang) return res.status(400).json({ error: 'Missing text or lang' });
+
+    const encoded = encodeURIComponent(text.slice(0, 200));
+    const url = `https://translate.google.com/translate_tts?ie=UTF-8&q=${encoded}&tl=${lang}&client=tw-ob`;
+
+    const response = await fetch(url, {
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+        'Referer': 'https://translate.google.com/',
+      }
+    });
+
+    if (!response.ok) throw new Error('Google TTS failed');
+
+    const buffer = await response.arrayBuffer();
+    res.set('Content-Type', 'audio/mpeg');
+    res.set('Cache-Control', 'no-cache');
+    res.send(Buffer.from(buffer));
+
+  } catch (err) {
+    console.error('[/api/tts]', err.message);
+    res.status(500).json({ error: 'TTS unavailable' });
+  }
 });
 
 // ─── START ────────────────────────────────────────────────────
