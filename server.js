@@ -95,7 +95,6 @@ app.post('/api/chat', async (req, res) => {
 
     const trimmed = messages.slice(-20);
 
-    // Language rule goes FIRST — model must see it before anything else
     const rule = LANG_RULES[langCode] || LANG_RULES['en'];
     const systemPrompt = `${rule}\n\n${HERITAGE_SYSTEM}`;
 
@@ -180,7 +179,7 @@ app.get('/api/health', (_req, res) => {
   res.json({ status: 'ok', model: MODEL, timestamp: new Date().toISOString() });
 });
 
-// ─── TTS PROXY (bypasses CORS for Google Translate TTS) ───────
+// ─── TTS PROXY ────────────────────────────────────────────────
 app.get('/api/tts', async (req, res) => {
   try {
     const { text, lang } = req.query;
@@ -209,9 +208,13 @@ app.get('/api/tts', async (req, res) => {
   }
 });
 
-// ─── START ────────────────────────────────────────────────────
-app.listen(port, () => {
-  console.log(`\n🏛  Walk Through History — Backend running (Groq / ${MODEL})`);
-  console.log(`   Local:   http://localhost:${port}`);
-  console.log(`   Health:  http://localhost:${port}/api/health\n`);
-});
+// ─── START (local) / EXPORT (Vercel) ─────────────────────────
+if (process.env.VERCEL) {
+  module.exports = app;
+} else {
+  app.listen(port, () => {
+    console.log(`\n🏛  Walk Through History — Backend running (Groq / ${MODEL})`);
+    console.log(`   Local:   http://localhost:${port}`);
+    console.log(`   Health:  http://localhost:${port}/api/health\n`);
+  });
+}
