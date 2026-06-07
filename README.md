@@ -237,7 +237,7 @@ git checkout -b feature/your-feature
 git commit -m "feat: add your feature"
 git push origin feature/your-feature
 # Open a Pull Request
-``'
+```
 
 ## 🙏 Acknowledgements
 
@@ -258,3 +258,6 @@ git push origin feature/your-feature
 ⭐ Star this repo if you found it useful!
 
 </div>
+
+---
+
